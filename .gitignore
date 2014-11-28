@@ -4,6 +4,8 @@
 .classpath
 bin
 
+jdbc.properties
+
 target/
 
 # Mobile Tools for Java (J2ME)
