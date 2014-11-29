@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+	<definition name="manager.template" template="/WEB-INF/page/commons/manager-template.jsp"></definition>
+	<definition name="manager.index" extends="manager.template">
+		<put-attribute name="content" value="/WEB-INF/page/manager-index.jsp"/>
+	</definition>
+	
+	<definition name="manager.appointment.list" extends="manager.template">
+		<put-attribute name="content" value="/WEB-INF/page/appointment/appointment-list.jsp"/>
+	</definition>
+	
+	<definition name="manager.photographer.list" extends="manager.template">
+		<put-attribute name="content" value="/WEB-INF/page/photographer/photographer-list.jsp"/>
+	</definition>
+	<definition name="manager.photographer.form" extends="manager.template">
+		<put-attribute name="content" value="/WEB-INF/page/photographer/photographer-form.jsp"/>
+	</definition>
+	
+	<definition name="manager.special.list" extends="manager.template">
+		<put-attribute name="content" value="/WEB-INF/page/special/special-list.jsp"/>
+	</definition>
+	<definition name="manager.special.form" extends="manager.template">
+		<put-attribute name="content" value="/WEB-INF/page/special/special-form.jsp"/>
+	</definition>
+	
+	<definition name="manager.works.list" extends="manager.template">
+		<put-attribute name="content" value="/WEB-INF/page/works/works-list.jsp"/>
+	</definition>
+	<definition name="manager.works.form" extends="manager.template">
+		<put-attribute name="content" value="/WEB-INF/page/works/works-form.jsp"/>
+	</definition>
+	
+</tiles-definitions>
