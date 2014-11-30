@@ -48,3 +48,19 @@
 	top:0px;
 	cursor:pointer;
 }
+.works-image-form-list #thumbnail-add-btn .thumbnail{
+	height:263px;
+	line-height:263px;
+}
+.works-image-form-list .thumbnail{
+	height:263px;
+}
+.works-image-form-list .thumbnail .caption{
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-left: -4px;
+	margin-right: -4px;
+}
+.works-image-form-list .thumbnail img{
+	height:253px;
+}

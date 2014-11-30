@@ -8,6 +8,7 @@ import net.shangtech.studio.service.IPhotographerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +19,11 @@ public class PhotographerController {
 	
 	@Autowired private IPhotographerService service;
 	
+	@ModelAttribute
+	public void menu(Model model){
+		model.addAttribute("menu", "photographer");
+	}
+	
 	@RequestMapping({"", "/list"})
 	public String list(Pagination<Photographer> pagination, Model model){
 		service.findAllByPage(pagination);
@@ -25,7 +31,7 @@ public class PhotographerController {
 		return "manager.photographer.list";
 	}
 	
-	@RequestMapping({"/edit", "create"})
+	@RequestMapping({"/edit", "/create"})
 	public String form(@RequestParam(required = false) Long id, Model model){
 		Photographer photographer = new Photographer();
 		if(id != null){
@@ -55,7 +61,7 @@ public class PhotographerController {
 			service.delete(id);
 		}
 		ajaxResponse.setSuccess(true);
-		return null;
+		return ajaxResponse;
 	}
 	
 }

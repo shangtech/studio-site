@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$('body').on('change', 'input[type="file"].auto-upload', function(){
 		var progress = $(this).parent().find('.progress-bar');
-		var form = $('<form enctype="multipart/form-data" method="post" action="' + ctx + '/upload"></form>').appendTo($('body'));
+		var form = $('<form style="display:none;" enctype="multipart/form-data" method="post" action="' + ctx + '/upload"></form>').appendTo($('body'));
 		$(this).clone().insertBefore($(this));
 		form.append($(this));
 		if(!$(this).attr('name')){

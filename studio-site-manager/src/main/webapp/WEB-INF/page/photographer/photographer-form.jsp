@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/page/commons/tags.jsp"%>
-<form class="form-horizontal" action="${ctx}/photographer/save" role="form">
+<form class="form-horizontal" action="${ctx}/photographer/save" method="post" role="form">
 	<input type="hidden" name="id" value="${photographer.id}"/>
 	<div class="form-group">
 		<label class="col-sm-2 control-label">摄影师姓名</label>
@@ -21,7 +21,7 @@
 				</span>
 			</div>
 			<input type="file" class="transparent hiddenfile auto-upload" for="image"/>
-			<input type="hidden" class="form-control" name="image" value="${photographer.image}" placeholder="摄影师姓名"/>
+			<input type="hidden" class="form-control" name="image" value="${photographer.image}"/>
 		</div>
 	</div>
 	<div class="form-group">

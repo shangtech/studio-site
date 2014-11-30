@@ -24,8 +24,8 @@
 					<p>团队成员：(${item.members})</p>
 					<p class="center">
 						<a class="btn btn-default pull-left" href="${ctx}/photographer/edit?id=${item.id}">编辑</a>
-						<a class="btn btn-default" href="javascript:;">作品管理</a>
-						<a class="btn btn-default pull-right" href="javascript:;">删除</a>
+						<a class="btn btn-default" href="${ctx}/works/${item.id}">作品管理</a>
+						<a class="btn btn-default pull-right remove" data-id="${item.id}" href="javascript:;">删除</a>
 					</p>
 				</div>
 			</div>
@@ -34,3 +34,4 @@
 	</div>
 	</c:if>
 </div>
+<script type="text/javascript" src="${ctx}/javascript/photographer-list.js"></script>
