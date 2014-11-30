@@ -18,7 +18,7 @@
 			</c:if>
 			<c:if test="${empty works.photographer.id}">
 			<select class="form-control" name="author">
-				<c:forEach items="${photographes}" var="photographer">
+				<c:forEach items="${photographers}" var="photographer">
 				<option value="${photographer.id}">${photographer.name}</option>
 				</c:forEach>
 			</select>

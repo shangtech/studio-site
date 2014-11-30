@@ -47,6 +47,7 @@
 	left:0px;
 	top:0px;
 	cursor:pointer;
+	z-index:99999;
 }
 .works-image-form-list #thumbnail-add-btn .thumbnail{
 	height:263px;

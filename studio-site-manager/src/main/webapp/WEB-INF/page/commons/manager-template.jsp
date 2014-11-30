@@ -14,6 +14,7 @@
 	<link href="${ctx}/css/studio-manager.css" rel="stylesheet">
 	
 	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -45,7 +46,6 @@
 	<div class="container manager-container">
 		<t:insertAttribute name="content"/>
 	</div>
-	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${ctx}/js/jquery.form.js"></script>
 	<script type="text/javascript" src="${ctx}/js/studio-manager.js"></script>
 </body>

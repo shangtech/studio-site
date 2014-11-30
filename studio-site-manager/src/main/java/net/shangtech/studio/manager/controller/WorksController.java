@@ -65,12 +65,16 @@ public class WorksController {
 		if(works == null){
 			works = new PhotoWorks();
 		}
+		Photographer photographer = null;
 		if(author != null){
-			Photographer photographer = photographerService.find(author);
+			photographer = photographerService.find(author);
 			if(photographer != null){
 				works.setPhotographer(photographer);
 				model.addAttribute("author", author);
 			}
+		}
+		if(photographer == null){
+			model.addAttribute("photographers", photographerService.findAll());
 		}
 		model.addAttribute("works", works);
 		return "manager.works.form";

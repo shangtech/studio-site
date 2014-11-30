@@ -34,4 +34,8 @@
 		<put-attribute name="content" value="/WEB-INF/page/works/works-form.jsp"/>
 	</definition>
 	
+	<definition name="manager.special.index" extends="manager.template">
+		<put-attribute name="content" value="/WEB-INF/page/special/special.jsp"/>
+	</definition>
+	
 </tiles-definitions>
