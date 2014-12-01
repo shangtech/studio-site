@@ -24,7 +24,7 @@
 		</div>
 	</div>
 	<div class="col-sm-9">
-		<form class="form-horizontal" action="${ctx}/special/save" method="post" role="form">
+		<form class="form-horizontal" onsubmit="return checkForm();" action="${ctx}/special/save" method="post" role="form">
 			<input type="hidden" name="id" value="${id}"/>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">页面名称</label>

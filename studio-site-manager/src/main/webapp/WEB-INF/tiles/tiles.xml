@@ -38,4 +38,8 @@
 		<put-attribute name="content" value="/WEB-INF/page/special/special.jsp"/>
 	</definition>
 	
+	<definition name="manager.style" extends="manager.template">
+		<put-attribute name="content" value="/WEB-INF/page/style/style.jsp"/>
+	</definition>
+	
 </tiles-definitions>

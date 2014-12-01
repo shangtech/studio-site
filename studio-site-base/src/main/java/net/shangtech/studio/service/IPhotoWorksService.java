@@ -6,4 +6,5 @@ import net.shangtech.studio.entity.PhotoWorks;
 
 public interface IPhotoWorksService extends IBaseService<PhotoWorks> {
 	Pagination<PhotoWorks> findByPhotographerByPage(Pagination<PhotoWorks> pagination, Long author);
+	Pagination<PhotoWorks> findByStyleByPage(Pagination<PhotoWorks> pagination, Long style);
 }

@@ -1,6 +1,11 @@
 package net.shangtech.studio.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -35,6 +40,11 @@ public class PhotoWorks extends BaseEntity<Long> {
     
     /** 作品图片展 **/
     private String images;
+    
+    private String url;
+    
+    @OneToMany(mappedBy = "photoWorks", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, targetEntity = WorksToStyle.class)
+    private Set<WorksToStyle> worksToStyleSet;
 
 	public String getName() {
 		return name;
@@ -98,6 +108,22 @@ public class PhotoWorks extends BaseEntity<Long> {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public Set<WorksToStyle> getWorksToStyleSet() {
+		return worksToStyleSet;
+	}
+
+	public void setWorksToStyleSet(Set<WorksToStyle> worksToStyleSet) {
+		this.worksToStyleSet = worksToStyleSet;
 	}
 
 }

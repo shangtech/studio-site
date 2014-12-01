@@ -35,6 +35,10 @@ public class SpecialController {
 		service.findAllByPage(pagination);
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("id", id);
+		if(id != null){
+			SpecialPage special = service.find(id);
+			model.addAttribute("special", special);
+		}
 		return "manager.special.index";
 	}
 	

@@ -34,6 +34,8 @@ public class Photographer extends BaseEntity<Long> {
     
     /** 排序 **/
     private Integer sort;
+    
+    private String url;
 
 	public String getName() {
 		return name;
@@ -97,6 +99,14 @@ public class Photographer extends BaseEntity<Long> {
 
 	public void setSort(Integer sort) {
 		this.sort = sort;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
     
 }

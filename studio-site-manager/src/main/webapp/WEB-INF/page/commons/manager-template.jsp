@@ -33,6 +33,7 @@
 				<ul class="nav navbar-nav">
 					<li class="<c:if test="${menu eq 'photographer'}">active</c:if>"><a href="${ctx}/photographer">摄影师管理</a></li>
 					<li class="<c:if test="${menu eq 'works'}">active</c:if>"><a href="${ctx}/works">作品管理</a></li>
+					<li class="<c:if test="${menu eq 'style'}">active</c:if>"><a href="${ctx}/style">作品风格管理</a></li>
 					<li class="<c:if test="${menu eq 'special'}">active</c:if>"><a href="${ctx}/special">页面管理</a></li>
 					<li class="<c:if test="${menu eq 'appointment'}">active</c:if>"><a href="${ctx}/appointmemt">预约管理</a></li>
 				</ul>
