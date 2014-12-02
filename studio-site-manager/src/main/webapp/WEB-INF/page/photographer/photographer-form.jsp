@@ -6,7 +6,12 @@
 	<div class="form-group">
 		<label class="col-sm-2 control-label">摄影师姓名</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" name="name" value="${photographer.name}" placeholder="摄影师姓名"/>
+			<div class="input-group">
+				<div class="input-group-addon">中文名</div>
+				<input type="text" class="form-control" name="name" value="${photographer.name}" placeholder="摄影师姓名"/>
+				<div class="input-group-addon">访问路径</div>
+				<input type="text" class="form-control" name="url" value="${photographer.url}" placeholder="访问路径"/>
+			</div>
 		</div>
 	</div>
 	<div class="form-group">

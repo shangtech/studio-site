@@ -29,7 +29,12 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">页面名称</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="name" value="${special.name}" placeholder="页面名称"/>
+					<div class="input-group">
+						<div class="input-group-addon">页面名称</div>
+						<input type="text" class="form-control" name="name" value="${special.name}" placeholder="页面名称"/>
+						<div class="input-group-addon">访问路径</div>
+						<input type="text" class="form-control" name="url" value="${special.url}" placeholder="访问路径"/>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -48,12 +53,6 @@
 				<label class="col-sm-2 control-label">页面关键词</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="pageKeyWords" value="${special.pageKeyWords}" placeholder="页面关键词"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">页面url</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" name="url" value="${special.url}" placeholder="页面url"/>
 				</div>
 			</div>
 			<div class="form-group">

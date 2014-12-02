@@ -1,10 +1,14 @@
 package net.shangtech.studio.service.impl;
 
+import java.util.List;
+
+import net.shangtech.framework.dao.support.MapHolder;
 import net.shangtech.framework.dao.support.Pagination;
 import net.shangtech.framework.service.BaseService;
 import net.shangtech.studio.dao.IPhotoWorksDao;
 import net.shangtech.studio.dao.IWorksToStyleDao;
 import net.shangtech.studio.entity.PhotoWorks;
+import net.shangtech.studio.entity.WorksToStyle;
 import net.shangtech.studio.service.IPhotoWorksService;
 
 import org.apache.commons.lang3.StringUtils;
@@ -54,18 +58,18 @@ public class PhotoWorksService extends BaseService<PhotoWorks> implements IPhoto
 	}
 
 	@Override
-    public Pagination<PhotoWorks> findByStyleByPage(Pagination<PhotoWorks> pagination, Long style) {
-		//TODO 还不确定对不对
-		if(style == null){
-	    	return findAllByPage(pagination);
-	    }
-	    return dao.findPage(() -> {
-	    	DetachedCriteria criteria = DetachedCriteria.forClass(PhotoWorks.class);
-	    	criteria.createCriteria("worksToStyleSet")
-	    		.createCriteria("style", "style")
+    public Pagination<WorksToStyle> findByStyleByPage(Pagination<WorksToStyle> pagination, Long style) {
+	    return worksToStyleDao.findPage(() -> {
+	    	DetachedCriteria criteria = DetachedCriteria.forClass(WorksToStyle.class);
+	    	criteria.createCriteria("style", "style")
 	    		.add(Restrictions.eq("style.id", style));
 	    	return criteria;
 	    }, pagination);
+    }
+
+	@Override
+    public List<WorksToStyle> findByStyle(Long style) {
+	    return worksToStyleDao.findByProperties(MapHolder.instance("style.id", style));
     }
 
 }
