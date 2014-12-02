@@ -39,7 +39,7 @@ public class SpecialController {
 			SpecialPage special = service.find(id);
 			model.addAttribute("special", special);
 		}
-		return "manager.special.index";
+		return "manager.special";
 	}
 	
 	@RequestMapping("/save")

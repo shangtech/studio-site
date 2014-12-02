@@ -1,7 +1,7 @@
 package net.shangtech.studio.test;
 
 import net.shangtech.framework.dao.support.Pagination;
-import net.shangtech.studio.entity.PhotoWorks;
+import net.shangtech.studio.entity.WorksToStyle;
 import net.shangtech.studio.service.IPhotoWorksService;
 
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class PhotoWorksServiceTest extends AbstractJUnit4SpringContextTests {
 	
 	@Test
 	public void testFindByStyle(){
-		Pagination<PhotoWorks> pagination = new Pagination<PhotoWorks>();
+		Pagination<WorksToStyle> pagination = new Pagination<>();
 		service.findByStyleByPage(pagination, 0L);
 	}
 	

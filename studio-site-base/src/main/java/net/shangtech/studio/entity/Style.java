@@ -18,6 +18,8 @@ public class Style extends BaseEntity<Long> {
     
     private String name;
     
+    private String description;
+    
     private Integer sort;
     
     private String memo;
@@ -65,6 +67,14 @@ public class Style extends BaseEntity<Long> {
 
 	public void setWorksToStyleSet(Set<WorksToStyle> worksToStyleSet) {
 		this.worksToStyleSet = worksToStyleSet;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

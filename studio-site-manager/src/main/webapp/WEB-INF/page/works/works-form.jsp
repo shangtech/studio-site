@@ -28,7 +28,12 @@
 	<div class="form-group">
 		<label class="col-sm-2 control-label">作品名称</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" value="${works.name}" name="name"/>
+			<div class="input-group">
+				<div class="input-group-addon">作品名称</div>
+				<input type="text" class="form-control" value="${works.name}" name="name" placeholder="作品名称"/>
+				<div class="input-group-addon">访问路径</div>
+				<input type="text" class="form-control" name="url" value="${works.url}" placeholder="访问路径"/>
+			</div>
 		</div>
 	</div>
 	<div class="form-group">
@@ -49,13 +54,13 @@
 	<div class="form-group">
 		<label class="col-sm-2 control-label">拍摄地</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" value="${works.address}" name="address"/>
+			<input type="text" class="form-control" value="${works.address}" name="address" placeholder="拍摄地"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-2 control-label">赞次数</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" value="${works.hearts}" name="hearts"/>
+			<input type="text" class="form-control" value="${works.hearts}" name="hearts" placeholder="赞次数"/>
 		</div>
 	</div>
 </form>

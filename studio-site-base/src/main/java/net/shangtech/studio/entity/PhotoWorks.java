@@ -41,6 +41,9 @@ public class PhotoWorks extends BaseEntity<Long> {
     /** 作品图片展 **/
     private String images;
     
+    @Transient
+    private Boolean selected;
+    
     private String url;
     
     @OneToMany(mappedBy = "photoWorks", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, targetEntity = WorksToStyle.class)
@@ -124,6 +127,14 @@ public class PhotoWorks extends BaseEntity<Long> {
 
 	public void setWorksToStyleSet(Set<WorksToStyle> worksToStyleSet) {
 		this.worksToStyleSet = worksToStyleSet;
+	}
+
+	public Boolean getSelected() {
+		return selected;
+	}
+
+	public void setSelected(Boolean selected) {
+		this.selected = selected;
 	}
 
 }

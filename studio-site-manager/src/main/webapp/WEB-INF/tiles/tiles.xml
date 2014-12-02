@@ -34,12 +34,13 @@
 		<put-attribute name="content" value="/WEB-INF/page/works/works-form.jsp"/>
 	</definition>
 	
-	<definition name="manager.special.index" extends="manager.template">
+	<definition name="manager.special" extends="manager.template">
 		<put-attribute name="content" value="/WEB-INF/page/special/special.jsp"/>
 	</definition>
 	
 	<definition name="manager.style" extends="manager.template">
 		<put-attribute name="content" value="/WEB-INF/page/style/style.jsp"/>
 	</definition>
+	<definition name="manager.style.pick" template="/WEB-INF/page/style/style-pick.jsp"/>
 	
 </tiles-definitions>
