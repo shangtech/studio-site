@@ -34,6 +34,7 @@ public class PhotographerService extends BaseService<Photographer> implements IP
 		old.setName(photographer.getName());
 		old.setPrice(photographer.getPrice());
 		old.setSort(photographer.getSort());
+		old.setUrl(photographer.getUrl());
 		dao.update(old);
 	}
 	

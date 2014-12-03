@@ -23,13 +23,16 @@ studio-site
 <ol class="task-list">
 <li>clone studio-site代码</li>
 <li>命令行到studio-site所在路径</li>
-<li>执行mvn install命令</li>
+<li>执行mvn install -DskipTests命令</li>
 <li>执行mvn eclipse:eclipse命令</li>
 <li>eclipse导入三个工程</li>
 <li>项目右键->Configure->Convert to maven Project</li>
-<li>数据库新建一个库,应用启动后会自动建表</li>
-<li>拷贝studio-site-manager/src/main/resources/config/_jdbc.properties命名为jdbc.properties然后修改相应配置</li>
-<li>拷贝studio-site-mobile/src/main/resources/config/_jdbc.properties命名为jdbc.properties然后修改相应配置</li>
-<li>启动应用如果没有自动建表,修改spring.xml中hibernate.hbm2ddl.auto的值为create,建好再改回来</li>
 <li>Done!</li>
 </ol>
+<h3>启动应用</h3>
+<li>新建一个数据库</li>
+<li>拷贝studio-site-manager/src/main/resources/config/_jdbc.properties命名为jdbc.properties然后修改相应配置</li>
+<li>拷贝studio-site-mobile/src/main/resources/config/_jdbc.properties命名为jdbc.properties然后修改相应配置</li>
+<li>如果需要生成测试数据则执行以下步骤</li>
+<li>拷贝studio-site-base/src/test/resources/config/_jdbc.properties命名为jdbc.properties然后修改相应配置</li>
+<li>跑测试用例studio-site-base/src/test/java/net.shangtech.studio.test.AppTest</li>

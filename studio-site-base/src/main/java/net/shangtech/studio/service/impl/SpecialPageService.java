@@ -14,5 +14,19 @@ public class SpecialPageService extends BaseService<SpecialPage> implements ISpe
 
 	@Autowired private ISpecialPageDao dao;
 
-
+	@Override
+	public void update(SpecialPage special){
+		SpecialPage old = dao.find(special.getId());
+		if(old != null){
+			old.setName(special.getName());
+			old.setPageContent(special.getPageContent());
+			old.setPageDescription(special.getPageDescription());
+			old.setPageKeyWords(special.getPageKeyWords());
+			old.setPageTitle(special.getPageTitle());
+			old.setShowAppointment(special.getShowAppointment());
+			old.setShowTel(special.getShowTel());
+			old.setUrl(special.getUrl());
+			dao.update(old);
+		}
+	}
 }
