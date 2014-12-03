@@ -30,9 +30,11 @@ studio-site
 <li>Done!</li>
 </ol>
 <h3>启动应用</h3>
+<ol>
 <li>新建一个数据库</li>
 <li>拷贝studio-site-manager/src/main/resources/config/_jdbc.properties命名为jdbc.properties然后修改相应配置</li>
 <li>拷贝studio-site-mobile/src/main/resources/config/_jdbc.properties命名为jdbc.properties然后修改相应配置</li>
 <li>如果需要生成测试数据则执行以下步骤</li>
 <li>拷贝studio-site-base/src/test/resources/config/_jdbc.properties命名为jdbc.properties然后修改相应配置</li>
 <li>跑测试用例studio-site-base/src/test/java/net.shangtech.studio.test.AppTest</li>
+</ol>
