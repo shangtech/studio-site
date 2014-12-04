@@ -56,6 +56,9 @@ public class SpecialController {
 	@ResponseBody
 	@RequestMapping("/remove")
 	public AjaxResponse remove(@RequestParam Long id){
-		return null;
+		AjaxResponse ajaxResponse = AjaxResponse.instance();
+		service.delete(id);
+		ajaxResponse.setSuccess(true);
+		return ajaxResponse;
 	}
 }

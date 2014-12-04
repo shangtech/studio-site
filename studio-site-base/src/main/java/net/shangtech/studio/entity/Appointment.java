@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import net.shangtech.framework.dao.support.BaseEntity;
 
@@ -33,6 +34,9 @@ public class Appointment extends BaseEntity<Long> {
     
     /** 预约意向,摄影师或者活动的ID **/
     private Long purpose;
+    
+    @Transient
+    private Object target;
     
     public enum AppointmentType{
     	/** 摄影师预约 **/
@@ -88,6 +92,14 @@ public class Appointment extends BaseEntity<Long> {
 
 	public void setPurpose(Long purpose) {
 		this.purpose = purpose;
+	}
+
+	public Object getTarget() {
+		return target;
+	}
+
+	public void setTarget(Object target) {
+		this.target = target;
 	}
 
 }

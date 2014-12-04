@@ -6,7 +6,7 @@
 		<c:if test="${not empty list}">
 		<div class="list-group">
 			<c:forEach items="${list}" var="item">
-			<a href="${ctx}/style/${item.id}" class="list-group-item<c:if test="${item.id eq id}"> active</c:if>">${item.name}</a>
+			<a href="${ctx}/style/${item.id}?pageNo=${pagination.pageNo}" class="list-group-item<c:if test="${item.id eq id}"> active</c:if>">${item.name}</a>
 			</c:forEach>
 		</div>
 		</c:if>
@@ -36,8 +36,11 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-10 col-sm-offset-2">
+				<div class="col-sm-10 col-sm-offset-2 center">
 					<input class="btn btn-default pull-left" type="submit" value=" 保 存 "/>
+					<c:if test="${not empty style}">
+					<a class="btn btn-default remove" href="javascript:;" data-id="${style.id}">删除该风格</a>
+					</c:if>
 					<input class="btn btn-default pull-right" type="reset" value=" 清 空 "/>
 				</div>
 			</div>

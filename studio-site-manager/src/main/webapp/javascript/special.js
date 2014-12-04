@@ -4,7 +4,6 @@ $(document).ready(function(){
 			fa: true
 		}
 	});
-	$('.wysihtml5-sandbox').height(500);
 	$('body').on('change', '#insert-image-file', function(){
 		var progress = $('#insert-image-progress');
 		var form = $('<form style="display:none;" enctype="multipart/form-data" method="post" action="' + ctx + '/upload"></form>').appendTo($('body'));
@@ -27,7 +26,23 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
+	$('body').on('click', '.remove', function(){
+		if(confirm('确定要删除本条数据吗')){
+			$.ajax({
+				url: ctx + '/special/remove',
+				type: 'POST',
+				data: {id: $(this).data('id')},
+				dataType: 'json',
+				success: function(data){
+					if(!data.success){
+						alert('删除失败');
+						return;
+					}
+					document.location.href = ctx + '/special';
+				}
+			});
+		}
+	});
 });
 
 function checkForm(){

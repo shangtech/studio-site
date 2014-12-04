@@ -11,7 +11,7 @@
 			<a href="${ctx}/special?pageNo=${pagination.pageNo-1}" class="list-group-item">上一页</a>
 			</c:if>
 			<c:forEach items="${pagination.items}" var="item">
-			<a href="${ctx}/special/${item.id}" class="list-group-item<c:if test="${item.id eq id}"> active</c:if>">${item.name}</a>
+			<a href="${ctx}/special/${item.id}?pageNo=${pagination.pageNo}" class="list-group-item<c:if test="${item.id eq id}"> active</c:if>">${item.name}</a>
 			</c:forEach>
 			<c:if test="${pagination.pageNo lt pagination.totalPage}">
 			<a href="${ctx}/special?pageNo=${pagination.pageNo+1}" class="list-group-item">下一页</a>
@@ -72,8 +72,11 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-10 col-sm-offset-2">
+				<div class="col-sm-10 col-sm-offset-2 center">
 					<input class="btn btn-default pull-left" type="submit" value=" 保 存 "/>
+					<c:if test="${not empty special}">
+					<a class="btn btn-default remove" data-id="${special.id}" href="javascript:;">删除该页面</a>
+					</c:if>
 					<input class="btn btn-default pull-right" type="reset" value=" 清 空 "/>
 				</div>
 			</div>
