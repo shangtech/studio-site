@@ -3,10 +3,11 @@ package net.shangtech.studio.service.impl;
 import java.util.List;
 
 import net.shangtech.framework.service.BaseService;
-import net.shangtech.studio.service.ISitePropertyService;
-import net.shangtech.studio.entity.SiteProperty;
 import net.shangtech.studio.dao.ISitePropertyDao;
+import net.shangtech.studio.entity.SiteProperty;
+import net.shangtech.studio.service.ISitePropertyService;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +31,7 @@ public class SitePropertyService extends BaseService<SiteProperty> implements IS
 					dao.update(old);
 				}
 			}
-			else{
+			else if(StringUtils.isNotBlank(property.getPropertyName()) && StringUtils.isNoneBlank(property.getPropertyCode())){
 				dao.save(property);
 			}
 		});

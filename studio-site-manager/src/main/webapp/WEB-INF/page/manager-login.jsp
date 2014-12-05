@@ -27,9 +27,12 @@
 <div class="login-wrapper">
 	<div class="modal">
   		<div class="modal-dialog">
+  		<form class="form" method="post" onsubmit="return checkForm();" action="${ctx}/login">
     		<div class="modal-content">
       			<div class="modal-body">
-        			<form class="form">
+		      			<c:if test="${not empty msg}">
+						<div class="alert alert-danger" role="alert">${msg}</div>
+						</c:if>
         				<div class="form-group">
         					<div class="input-group">
         						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -39,16 +42,17 @@
         				<div class="form-group">
         					<div class="input-group">
         						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        						<input type="text" name="password" class="form-control" placeholder="Password">
+        						<input type="password" name="password" class="form-control" placeholder="Password">
         					</div>
         				</div>
-        			</form>
       			</div>
       			<div class="modal-footer">
-        			<a href="javascript:;" class="btn btn-primary submit"> 登  录  后  台  </a>
+        			<input type="submit" class="btn btn-primary" value="登  录  后  台"/>
       			</div>
     		</div>
+    	</form>
  		</div>
 	</div>
 </div>
+<script type="text/javascript" src="${ctx}/javascript/login.js"></script>
 </body>

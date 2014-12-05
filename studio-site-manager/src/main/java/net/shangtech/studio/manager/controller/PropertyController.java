@@ -1,11 +1,13 @@
 package net.shangtech.studio.manager.controller;
 
+import java.io.Serializable;
 import java.util.List;
 
 import net.shangtech.framework.controller.AjaxResponse;
 import net.shangtech.studio.entity.SiteProperty;
 import net.shangtech.studio.service.ISitePropertyService;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,13 +33,10 @@ public class PropertyController {
 		return "manager.properties";
 	}
 	
-	@ResponseBody
 	@RequestMapping("/save")
-	public AjaxResponse save(List<SiteProperty> list){
-		AjaxResponse ajaxResponse = AjaxResponse.instance();
-		service.save(list);
-		ajaxResponse.setSuccess(true);
-		return null;
+	public String save(PropertyForm form, Model model){
+		service.save(form.getList());
+		return "redirect:/properties";
 	}
 	
 	@ResponseBody
@@ -45,10 +44,25 @@ public class PropertyController {
 	public AjaxResponse remove(@RequestParam Long id){
 		AjaxResponse ajaxResponse = AjaxResponse.instance();
 		SiteProperty property = service.find(id);
-		if(property != null && !property.getIsDefault()){
+		if(property != null && !BooleanUtils.isTrue(property.getIsDefault())){
 			service.delete(property.getId());
 		}
 		ajaxResponse.setSuccess(true);
 		return ajaxResponse;
 	}
+}
+class PropertyForm implements Serializable{
+	
+    private static final long serialVersionUID = -3457300175997388418L;
+    
+	private List<SiteProperty> list;
+
+	public List<SiteProperty> getList() {
+		return list;
+	}
+
+	public void setList(List<SiteProperty> list) {
+		this.list = list;
+	}
+	
 }

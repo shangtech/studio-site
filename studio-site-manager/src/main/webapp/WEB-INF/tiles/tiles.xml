@@ -48,4 +48,8 @@
 	</definition>
 	
 	<definition name="manager.login" template="/WEB-INF/page/manager-login.jsp"/>
+	
+	<definition name="manager.reset" extends="manager.template">
+		<put-attribute name="content" value="/WEB-INF/page/reset.jsp"/>
+	</definition>
 </tiles-definitions>

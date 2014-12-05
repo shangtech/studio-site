@@ -41,7 +41,7 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${ctx}/logout">退出登录</a></li>
-					<li><a href="${ctx}/password">修改密码</a></li>
+					<li><a href="${ctx}/reset">修改密码</a></li>
 				</ul>
 			</nav>
 		</div>

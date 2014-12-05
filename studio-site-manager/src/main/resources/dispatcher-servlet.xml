@@ -51,4 +51,21 @@
 	</bean>
 	
 	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/appointment/**"/>
+			<mvc:mapping path="/photographer/**"/>
+			<mvc:mapping path="/properties/**"/>
+			<mvc:mapping path="/special/**"/>
+			<mvc:mapping path="/style/**"/>
+			<mvc:mapping path="/works/**"/>
+			<mvc:mapping path="/reset"/>
+			<mvc:mapping path="/upload"/>
+			<mvc:mapping path="/index"/>
+			<mvc:mapping path="/main"/>
+			<mvc:mapping path="/"/>
+			<bean class="net.shangtech.studio.manager.interceptor.LoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

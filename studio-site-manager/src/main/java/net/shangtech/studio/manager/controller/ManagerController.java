@@ -75,6 +75,12 @@ public class ManagerController {
 		return "manager.login";
 	}
 	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session){
+		session.removeAttribute(SESSION_USER_KEY);
+		return "manager.login";
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@RequestParam String username, @RequestParam String password, Model model, HttpSession session){
 		if(username.equals(props.getProperty(USERNAME_KEY))
@@ -90,8 +96,13 @@ public class ManagerController {
 		}
 	}
 	
+	@RequestMapping(value = "/reset", method = RequestMethod.GET)
+	public String reset(){
+		return "manager.reset";
+	}
+	
 	@ResponseBody
-	@RequestMapping("/reset")
+	@RequestMapping(value = "/reset", method = RequestMethod.POST)
 	public AjaxResponse reset(@RequestParam String oldUsername, @RequestParam String username, @RequestParam String oldPassword, @RequestParam String password){
 		AjaxResponse ajaxResponse = AjaxResponse.instance();
 		if(oldUsername.equals(props.getProperty(USERNAME_KEY))
