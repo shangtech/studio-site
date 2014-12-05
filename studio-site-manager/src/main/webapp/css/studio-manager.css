@@ -1,4 +1,22 @@
 @CHARSET "UTF-8";
+.login-wrapper{
+	margin-top:50px;
+}
+.login-wrapper .modal{
+	position: relative;
+	top: auto;
+	right: auto;
+	bottom: auto;
+	left: auto;
+	z-index: 1;
+	display: block;
+}
+.login-wrapper .modal .modal-dialog{
+	width: 450px;
+}
+.login-wrapper .modal .modal-dialog .modal-body{
+	padding-top: 30px;
+}
 .clear:after{
 	content:'';
 	display:block;

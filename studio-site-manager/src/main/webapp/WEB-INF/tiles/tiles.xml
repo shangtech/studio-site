@@ -46,4 +46,6 @@
 	<definition name="manager.properties" extends="manager.template">
 		<put-attribute name="content" value="/WEB-INF/page/property/properties.jsp"/>
 	</definition>
+	
+	<definition name="manager.login" template="/WEB-INF/page/manager-login.jsp"/>
 </tiles-definitions>
