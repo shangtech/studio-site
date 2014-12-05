@@ -20,7 +20,7 @@ public class AppointmentService extends BaseService<Appointment> implements IApp
 
 	@Override
     public Pagination<Appointment> findBySpecial(Long special, Pagination<Appointment> pagination) {
-		MapHolder<String> holder = MapHolder.instance("appointmentType", AppointmentType.ACTIVITY);
+		MapHolder<String> holder = MapHolder.instance("appointmentType", AppointmentType.ACTIVITY.name());
 		if(special != null){
 			holder.put("purpose", special);
 		}
@@ -29,7 +29,7 @@ public class AppointmentService extends BaseService<Appointment> implements IApp
 
 	@Override
     public Pagination<Appointment> findByPhotographer(Long photographer, Pagination<Appointment> pagination) {
-		MapHolder<String> holder = MapHolder.instance("appointmentType", AppointmentType.ACTIVITY);
+		MapHolder<String> holder = MapHolder.instance("appointmentType", AppointmentType.ACTIVITY.name());
 		if(photographer != null){
 			holder.put("purpose", photographer);
 		}

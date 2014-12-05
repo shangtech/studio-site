@@ -36,7 +36,7 @@ public class AppointmentController {
 			appointment.setTarget(specialService.find(appointment.getPurpose()));
 		});
 		model.addAttribute("pagination", pagination);
-		model.addAttribute("list", photographerService.findAll());
+		model.addAttribute("list", specialService.findAll());
 		model.addAttribute("type", "special");
 		model.addAttribute("menu", "appointment-special");
 		model.addAttribute("id", special);
@@ -55,9 +55,9 @@ public class AppointmentController {
 			appointment.setTarget(photographerService.find(appointment.getPurpose()));
 		});
 		model.addAttribute("pagination", pagination);
-		model.addAttribute("list", specialService.findAll());
+		model.addAttribute("list", photographerService.findAll());
 		model.addAttribute("type", "photographer");
-		model.addAttribute("menu", "appointment-special");
+		model.addAttribute("menu", "appointment-photographer");
 		model.addAttribute("id", photographer);
 		return "manager.appointment.list";
 	}

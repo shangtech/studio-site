@@ -18,6 +18,12 @@ public class SiteProperty extends BaseEntity<Long> {
     @Column(name = "property_value")
     private String propertyValue;
     
+    @Column(name = "property_code")
+    private String propertyCode;
+    
+    @Column(name = "is_default")
+    private Boolean isDefault;
+    
     private Integer sort;
     
     private String memo;
@@ -52,6 +58,22 @@ public class SiteProperty extends BaseEntity<Long> {
 
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+
+	public String getPropertyCode() {
+		return propertyCode;
+	}
+
+	public void setPropertyCode(String propertyCode) {
+		this.propertyCode = propertyCode;
+	}
+
+	public Boolean getIsDefault() {
+		return isDefault;
+	}
+
+	public void setIsDefault(Boolean isDefault) {
+		this.isDefault = isDefault;
 	}
     
 }

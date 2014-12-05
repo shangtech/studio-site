@@ -43,4 +43,7 @@
 	</definition>
 	<definition name="manager.style.pick" template="/WEB-INF/page/style/style-pick.jsp"/>
 	
+	<definition name="manager.properties" extends="manager.template">
+		<put-attribute name="content" value="/WEB-INF/page/property/properties.jsp"/>
+	</definition>
 </tiles-definitions>

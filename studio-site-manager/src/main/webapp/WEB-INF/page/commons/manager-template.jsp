@@ -35,8 +35,9 @@
 					<li class="<c:if test="${menu eq 'works'}">active</c:if>"><a href="${ctx}/works">作品管理</a></li>
 					<li class="<c:if test="${menu eq 'style'}">active</c:if>"><a href="${ctx}/style">作品风格管理</a></li>
 					<li class="<c:if test="${menu eq 'special'}">active</c:if>"><a href="${ctx}/special">页面管理</a></li>
-					<li class="<c:if test="${menu eq 'appointment-photographer'}">active</c:if>"><a href="${ctx}/appointmemt/photographer">摄影师预约</a></li>
-					<li class="<c:if test="${menu eq 'appointment-special'}">active</c:if>"><a href="${ctx}/appointmemt/special">活动预约</a></li>
+					<li class="<c:if test="${menu eq 'appointment-photographer'}">active</c:if>"><a href="${ctx}/appointment/photographer">摄影师预约</a></li>
+					<li class="<c:if test="${menu eq 'appointment-special'}">active</c:if>"><a href="${ctx}/appointment/special">活动预约</a></li>
+					<li class="<c:if test="${menu eq 'properties'}">active</c:if>"><a href="${ctx}/properties">属性管理</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${ctx}/logout">退出登录</a></li>
