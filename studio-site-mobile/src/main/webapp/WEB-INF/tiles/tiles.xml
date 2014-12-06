@@ -9,4 +9,11 @@
 	<definition name="mobile.index" extends="mobile.template">
 		<put-attribute name="content" value="/WEB-INF/page/mobile-index.jsp" />
 	</definition>
+	
+	<definition name="mobile.photographer" extends="mobile.template">
+		<put-attribute name="content" value="/WEB-INF/page/mobile-photographer-list.jsp" />
+	</definition>
+	<definition name="mobile.photographer.detail" extends="mobile.template">
+		<put-attribute name="content" value="/WEB-INF/page/mobile-photographer-detail.jsp" />
+	</definition>
 </tiles-definitions>

@@ -72,4 +72,9 @@ public class PhotoWorksService extends BaseService<PhotoWorks> implements IPhoto
 	    return worksToStyleDao.findByProperties(MapHolder.instance("style.id", style));
     }
 
+	@Override
+    public List<PhotoWorks> findByPhotographer(Long photographer) {
+	    return dao.findByProperties(MapHolder.instance("author", photographer));
+    }
+
 }

@@ -7,5 +7,5 @@ import net.shangtech.studio.entity.Photographer;
 
 @Transactional
 public interface IPhotographerService extends IBaseService<Photographer> {
-
+	Photographer findByUrl(String url);
 }

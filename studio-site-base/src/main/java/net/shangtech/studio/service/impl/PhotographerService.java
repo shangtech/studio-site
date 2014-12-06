@@ -1,5 +1,6 @@
 package net.shangtech.studio.service.impl;
 
+import net.shangtech.framework.dao.support.MapHolder;
 import net.shangtech.framework.service.BaseService;
 import net.shangtech.studio.service.IPhotographerService;
 import net.shangtech.studio.entity.Photographer;
@@ -37,5 +38,10 @@ public class PhotographerService extends BaseService<Photographer> implements IP
 		old.setUrl(photographer.getUrl());
 		dao.update(old);
 	}
+
+	@Override
+    public Photographer findByUrl(String url) {
+	    return dao.findOneByProperties(MapHolder.instance("url", url));
+    }
 	
 }

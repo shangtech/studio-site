@@ -11,4 +11,5 @@ public interface IPhotoWorksService extends IBaseService<PhotoWorks> {
 	Pagination<PhotoWorks> findByPhotographerByPage(Pagination<PhotoWorks> pagination, Long author);
 	Pagination<WorksToStyle> findByStyleByPage(Pagination<WorksToStyle> pagination, Long style);
 	List<WorksToStyle> findByStyle(Long style);
+	List<PhotoWorks> findByPhotographer(Long photographer);
 }

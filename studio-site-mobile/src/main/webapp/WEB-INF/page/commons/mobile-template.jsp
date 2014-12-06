@@ -37,20 +37,12 @@
 	        <div id="iNavListBox" class="iNavListBox">
 	            <ul class="navlist">
 	                <li><a href="${ctx}/" data-ajax="false" class="isy ui-link">首页</a></li>
-	                <li><a href="${ctx}/" data-ajax="false" class="isys ui-link">摄影师</a></li>
+	                <li><a href="${ctx}/photographer" data-ajax="false" class="isys ui-link">摄影师</a></li>
 	                <li><a href="${ctx}/" data-ajax="false" class="izp ui-link">作品</a></li>
 	                <li><a href="${ctx}/" data-ajax="false" class="ius ui-link">联系我们</a></li>
 	            </ul>
 	        </div>
         </header>
-     
-	    <article class="warpBox">
-			<div class="iBox">
-				<t:insertAttribute name="content" />
-			</div>
-			<div id="footerbtn" class="iTel">
-        	    <a href="tel:010-62351571" class="ui-link">电话咨询</a>
-            </div>
-		</article>
+     	<t:insertAttribute name="content" />
     </section>
 </body>

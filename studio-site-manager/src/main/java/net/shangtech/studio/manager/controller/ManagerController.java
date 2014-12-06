@@ -1,6 +1,8 @@
 package net.shangtech.studio.manager.controller;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -33,10 +35,11 @@ public class ManagerController {
 	private static final String USERNAME_KEY = "username";
 	private static final String PASSWORD_KEY = "password";
 	public static final String SESSION_USER_KEY = "user_in_session";
+	private static final String AUTH_FILE = "config/auth.properties";
 	
 	static{
 		try {
-			props.load(ManagerController.class.getClassLoader().getResourceAsStream("config/auth.properties"));
+			props.load(ManagerController.class.getClassLoader().getResourceAsStream(AUTH_FILE));
 		} catch (IOException e) {
 			logger.error("加载管理员账户文件异常", e);
 		}
@@ -109,7 +112,23 @@ public class ManagerController {
 				&& EncoderUtils.MD5(oldUsername + "@" + oldPassword).equals(props.getProperty(PASSWORD_KEY))){
 			props.setProperty(USERNAME_KEY, username);
 			props.setProperty(PASSWORD_KEY, EncoderUtils.MD5(username + "@" + password));
-			ajaxResponse.setSuccess(true);
+			OutputStream os = null;
+			try {
+				os  = new FileOutputStream(AUTH_FILE);
+	            props.store(os, "");
+	            ajaxResponse.setSuccess(true);
+            } catch (IOException e) {
+	            logger.error("更新账号文件失败", e);
+            }
+			finally {
+				if(os != null){
+					try {
+	                    os.close();
+                    } catch (IOException e) {
+	                    logger.error("更新账号文件关闭输出流异常", e);
+                    }
+				}
+			}
 		}
 		return ajaxResponse;
 	}
