@@ -6,6 +6,7 @@ import java.util.List;
 import net.shangtech.framework.dao.support.Pagination;
 import net.shangtech.studio.entity.PhotoWorks;
 import net.shangtech.studio.entity.Photographer;
+import net.shangtech.studio.mobile.controller.vo.PhotoWorksVo;
 import net.shangtech.studio.mobile.controller.vo.PhotographerVo;
 import net.shangtech.studio.service.IPhotoWorksService;
 import net.shangtech.studio.service.IPhotographerService;
@@ -69,5 +70,40 @@ public class MobileController {
 		List<PhotoWorks> works = worksService.findByPhotographer(photographer.getId());
 		model.addAttribute("works", works);
 		return "mobile.photographer.detail";
+	}
+	
+	
+	/**
+	 * 作品展
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/works", method = RequestMethod.GET)
+	public String works(Model model){
+		List<PhotoWorksVo> works = worksList(new Pagination<PhotoWorks>(8));
+		Pagination<PhotoWorksVo> pagination = new Pagination<PhotoWorksVo>(8);
+		pagination.setItems(works);
+		model.addAttribute("pagination", pagination);
+		return "mobile.works";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/works", method = RequestMethod.POST)
+	public List<PhotoWorksVo> worksList(Pagination<PhotoWorks> pagination){
+		List<PhotoWorksVo> list = new ArrayList<>();
+		worksService.findAllByPage(pagination);
+		if(!CollectionUtils.isEmpty(pagination.getItems())){
+			pagination.getItems().forEach(work -> {
+				PhotoWorksVo vo = new PhotoWorksVo();
+				vo.setImage(work.getImage());
+				vo.setUrl(work.getUrl());
+				vo.setName(work.getName());
+				vo.setAddress(work.getAddress());
+				vo.setHearts(work.getHearts());
+				vo.setAuthor(photographerService.find(work.getAuthor()).getName());
+				list.add(vo);
+			});
+		}
+		return list;
 	}
 }

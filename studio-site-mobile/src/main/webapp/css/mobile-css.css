@@ -391,7 +391,7 @@ textarea{resize:none; overflow:auto; outline:none;}
 	.dPhotoBoxLeft1{ width:20%;}
 }
 
-@media only screen and (min-width: 414px){
+@media only screen and (min-width: 414px){ 	
 	.sSysContent,.dSysInformationRight{ width:23em;}/* 摄影师信息宽度 */
 }
 @media only screen and (min-width: 480px){
