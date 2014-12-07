@@ -6,15 +6,18 @@ import java.util.List;
 import net.shangtech.framework.dao.support.Pagination;
 import net.shangtech.studio.entity.PhotoWorks;
 import net.shangtech.studio.entity.Photographer;
+import net.shangtech.studio.entity.Style;
 import net.shangtech.studio.mobile.controller.vo.PhotoWorksVo;
 import net.shangtech.studio.mobile.controller.vo.PhotographerVo;
 import net.shangtech.studio.service.IPhotoWorksService;
 import net.shangtech.studio.service.IPhotographerService;
+import net.shangtech.studio.service.IStyleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +28,7 @@ public class MobileController {
 	
 	@Autowired private IPhotographerService photographerService;
 	@Autowired private IPhotoWorksService worksService;
+	@Autowired private IStyleService styleService;
 
 	@RequestMapping({ "/", "/main", "/index" })
 	public String index(Model model) {
@@ -84,6 +88,8 @@ public class MobileController {
 		Pagination<PhotoWorksVo> pagination = new Pagination<PhotoWorksVo>(8);
 		pagination.setItems(works);
 		model.addAttribute("pagination", pagination);
+		List<Style> styles = styleService.findAll();
+		model.addAttribute("style", styles);
 		return "mobile.works";
 	}
 	
@@ -105,5 +111,39 @@ public class MobileController {
 			});
 		}
 		return list;
+	}
+	
+	/**
+	 * 作品详情
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/works/{url}")
+	public String worksDetail(@PathVariable String url, Model model) {
+		PhotoWorks work = worksService.findByUrl(url);
+		if (work == null) {
+			throw new RuntimeException();
+		}
+		model.addAttribute("work", work);
+		Photographer author = photographerService.find(work.getAuthor());
+		model.addAttribute("author", author);
+		return "mobile.works.detail";
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/works/style/{id}")
+	public String worksListByStyle(@PathVariable String id, Model model){
+		List<PhotoWorksVo> works = worksList(new Pagination<PhotoWorks>(8));
+		Pagination<PhotoWorksVo> pagination = new Pagination<PhotoWorksVo>(8);
+		pagination.setItems(works);
+		model.addAttribute("pagination", pagination);
+		List<Style> styles = styleService.findAll();
+		model.addAttribute("style", styles);
+		return "mobile.works";
 	}
 }

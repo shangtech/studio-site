@@ -77,4 +77,10 @@ public class PhotoWorksService extends BaseService<PhotoWorks> implements IPhoto
 	    return dao.findByProperties(MapHolder.instance("author", photographer));
     }
 
+	@Override
+    public PhotoWorks findByUrl(String url) {
+	    return dao.findOneByProperties(MapHolder.instance("url", url));
+    }
+	
+	
 }

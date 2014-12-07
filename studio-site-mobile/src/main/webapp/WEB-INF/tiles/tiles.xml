@@ -19,4 +19,7 @@
 	<definition name="mobile.works" extends="mobile.template">
 		<put-attribute name="content" value="/WEB-INF/page/mobile-works-list.jsp" />
 	</definition>
+	<definition name="mobile.works.detail" extends="mobile.template">
+		<put-attribute name="content" value="/WEB-INF/page/mobile-works-detail.jsp" />
+	</definition>
 </tiles-definitions>

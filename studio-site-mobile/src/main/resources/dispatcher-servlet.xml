@@ -22,6 +22,7 @@
 	<mvc:resources location="/image/" mapping="/image/**"/>
 	<mvc:resources location="/images/" mapping="/images/**"/>
 	<mvc:resources location="/javascript/" mapping="/javascript/**"/>
+	<mvc:resources location="/uploadfiles/" mapping="/uploadfiles/**"/>
 	<!-- <mvc:resources location="/WEB-INF/page/" mapping="/WEB-INF/page/**"/> -->
 
 	<!-- 自动扫描的包名 -->

@@ -13,17 +13,18 @@
 	<div class="clear">
 		<a href="http://m.onlylover.com/theme/lists?styleid=0" data-ajax="false" class="active ui-link">全部</a>
 		<!-- 当前页面添加class “active” -->
-		<a href="http://m.onlylover.com/theme/lists?styleid=1" data-ajax="false" class="ui-link">韩式</a>
-		<a href="http://m.onlylover.com/theme/lists?styleid=2" data-ajax="false" class="ui-link">欧式</a>
-		<a href="http://m.onlylover.com/theme/lists?styleid=5" data-ajax="false" class="ui-link">中国风</a>
+		<c:forEach var="item" items="${style}" begin="0" end="2" step="1" varStatus="status">
+		   <a href="http://m.onlylover.com/theme/lists?styleid=1" data-ajax="false" class="ui-link">${item.name}</a>
+		</c:forEach>
         <a href="http://m.onlylover.com/theme/lists###" data-ajax="false" id="more" class="ui-link">更多</a>
 	</div>
 	<div id="moreListNav" class="moreListNav ">
 		<!-- 更多风格 选择后一样添加 加class “active”-->
-		<a href="http://m.onlylover.com/theme/lists?styleid=6" data-ajax="false" class="ui-link">清新</a>
-        <a href="http://m.onlylover.com/theme/lists?styleid=7" data-ajax="false" class="ui-link">田园花海</a>
-        <a href="http://m.onlylover.com/theme/lists?styleid=8" data-ajax="false" class="ui-link">时尚</a>
-        <a href="http://m.onlylover.com/theme/lists?styleid=9" data-ajax="false" class="ui-link">生活化</a>
+		<c:if test="${style.size()>3}">
+		    <c:forEach var="item" items="${style}" begin="3" step="1" varStatus="status">
+			<a href="http://m.onlylover.com/theme/lists?styleid=6" data-ajax="false" class="ui-link">${item.name}</a>
+			</c:forEach>
+		</c:if>
         <span class="arrowdown"></span>
 	</div>
 </div>
