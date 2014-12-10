@@ -36,12 +36,13 @@ public class StyleController {
 	}
 	
 	@RequestMapping({"", "/"})
-	public String Index(Pagination<WorksToStyle> pagination, Model model){
+	public String index(Pagination<WorksToStyle> pagination, Model model){
 		return index(null, pagination, model);
 	}
 	
 	@RequestMapping("/{id}")
 	public String index(@PathVariable Long id, Pagination<WorksToStyle> pagination, Model model){
+		pagination.setLimit(6);
 		if(id != null){
 			worksService.findByStyleByPage(pagination, id);
 			model.addAttribute("style", service.find(id));
@@ -92,6 +93,7 @@ public class StyleController {
 	
 	@RequestMapping("/pick")
 	public String pick(@RequestParam Long style, Pagination<PhotoWorks> pagination, Model model){
+		pagination.setLimit(6);
 		worksService.findAllByPage(pagination);
 		List<WorksToStyle> list = worksService.findByStyle(style);
 		Map<Long, WorksToStyle> map = new HashMap<>();

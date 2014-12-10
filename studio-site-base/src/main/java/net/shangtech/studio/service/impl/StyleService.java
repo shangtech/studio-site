@@ -1,5 +1,7 @@
 package net.shangtech.studio.service.impl;
 
+import java.util.List;
+
 import net.shangtech.framework.dao.support.MapHolder;
 import net.shangtech.framework.service.BaseService;
 import net.shangtech.studio.dao.IPhotoWorksDao;
@@ -52,6 +54,11 @@ public class StyleService extends BaseService<Style> implements IStyleService {
 			wts.setStyle(dao.find(style));
 			worksToStyleDao.save(wts);
 		}
+    }
+
+	@Override
+    public List<WorksToStyle> findByWorks(Long works) {
+		return worksToStyleDao.findByProperties(MapHolder.instance("photoWorks.id", works));
     }
 
 }

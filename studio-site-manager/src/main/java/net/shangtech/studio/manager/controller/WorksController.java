@@ -1,17 +1,21 @@
 package net.shangtech.studio.manager.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.shangtech.framework.controller.AjaxResponse;
 import net.shangtech.framework.dao.support.Pagination;
 import net.shangtech.studio.entity.PhotoWorks;
 import net.shangtech.studio.entity.Photographer;
+import net.shangtech.studio.entity.WorksToStyle;
 import net.shangtech.studio.service.IPhotoWorksService;
 import net.shangtech.studio.service.IPhotographerService;
+import net.shangtech.studio.service.IStyleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +28,7 @@ public class WorksController {
 	
 	@Autowired private IPhotoWorksService service;
 	@Autowired private IPhotographerService photographerService;
+	@Autowired private IStyleService styleService;
 	
 	@ModelAttribute
 	public void menu(Model model){
@@ -41,6 +46,7 @@ public class WorksController {
 		List<Photographer> photographers = photographerService.findAll();
 		model.addAttribute("photographers", photographers);
 		model.addAttribute("author", author);
+		pagination.setLimit(6);
 		service.findByPhotographerByPage(pagination, author);
 		model.addAttribute("pagination", pagination);
 		if(author == null){
@@ -77,16 +83,25 @@ public class WorksController {
 			model.addAttribute("photographers", photographerService.findAll());
 		}
 		model.addAttribute("works", works);
+		model.addAttribute("styles", styleService.findAll());
+		List<Long> styleIds = new ArrayList<>();
+		List<WorksToStyle> wtsList = styleService.findByWorks(works.getId());
+		if(!CollectionUtils.isEmpty(wtsList)){
+			wtsList.forEach(wts -> {
+				styleIds.add(wts.getStyle().getId());
+			});
+		}
+		model.addAttribute("styleIds", styleIds);
 		return "manager.works.form";
 	}
 	
 	@RequestMapping("/save")
-	public String save(PhotoWorks works, Model model){
-		return save(null, works, model);
+	public String save(PhotoWorks works, List<Long> styles, Model model){
+		return save(null, works, styles, model);
 	}
 	
 	@RequestMapping("/{author}/save")
-	public String save(@PathVariable Long author, PhotoWorks works, Model model){
+	public String save(@PathVariable Long author, PhotoWorks works, List<Long> styles, Model model){
 		Photographer photographer = null;
 		if(author != null){
 			photographer = photographerService.find(author);
@@ -106,6 +121,12 @@ public class WorksController {
 		}
 		else {
 			service.update(works);
+		}
+		List<WorksToStyle> wtsList = styleService.findByWorks(works.getId());
+		if(!CollectionUtils.isEmpty(wtsList)){
+			wtsList.forEach(wts -> {
+				
+			});
 		}
 		return "redirect:/works" + (author==null ? "" : "/"+author);
 	}

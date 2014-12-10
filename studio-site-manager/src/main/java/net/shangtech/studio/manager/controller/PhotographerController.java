@@ -26,6 +26,7 @@ public class PhotographerController {
 	
 	@RequestMapping({"", "/list"})
 	public String list(Pagination<Photographer> pagination, Model model){
+		pagination.setLimit(8);
 		service.findAllByPage(pagination);
 		model.addAttribute("pagination", pagination);
 		return "manager.photographer.list";

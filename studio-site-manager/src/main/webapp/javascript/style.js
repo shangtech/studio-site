@@ -13,9 +13,11 @@ $(document).ready(function(){
 			success: function(data){
 				if(data.success){
 					btn.attr('disabled', 'disabled').removeClass('.btn-select').html(' 已 选 ');
-					var works = btn.closest('.works').clone();
-					works.find('.options').html('<a class="btn btn-default btn-remove-style" data-id="' + btn.data('id') + '" href="javascript:;"> 移 除 </a>');
-					$('#style-works-list').append(works);
+					if($('#style-works-list').children().length < 6){
+						var works = btn.closest('.works').clone();
+						works.find('.options').html('<a class="btn btn-default btn-remove-style" data-id="' + btn.data('id') + '" href="javascript:;"> 移 除 </a>');
+						$('#style-works-list').append(works);
+					}
 				}
 			}
 		});
@@ -50,5 +52,11 @@ $(document).ready(function(){
 				}
 			});
 		}
+	});
+	$('#works-picking-modal').on('click', '.pagination a', function(){
+		if($(this).parent().hasClass('disabled') || !$(this).data('page')){
+			return;
+		}
+		$('#works-picking-modal .modal-content').load(ctx + '/style/pick?style=' + $('input[name="id"]').val() + '&pageNo=' + $(this).data('page'));
 	});
 });

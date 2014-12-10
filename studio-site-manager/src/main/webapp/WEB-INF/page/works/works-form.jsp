@@ -63,6 +63,16 @@
 			<input type="text" class="form-control" value="${works.hearts}" name="hearts" placeholder="赞次数"/>
 		</div>
 	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">作品风格</label>
+		<div class="col-sm-10">
+			<c:forEach items="${styles}" var="item">
+			<label class="checkbox-inline">
+			  <input type="checkbox" name="styles" value="${item.id}"${fn:contains(styleIds, item.id) ? ' checked' : ''}> ${item.name} 
+			</label>
+			</c:forEach>
+		</div>
+	</div>
 </form>
 <div class="row works-image-form-list">
 	<c:if test="${not empty works.images}">
