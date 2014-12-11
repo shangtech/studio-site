@@ -6,8 +6,10 @@ import net.shangtech.framework.dao.support.MapHolder;
 import net.shangtech.framework.dao.support.Pagination;
 import net.shangtech.framework.service.BaseService;
 import net.shangtech.studio.dao.IPhotoWorksDao;
+import net.shangtech.studio.dao.IStyleDao;
 import net.shangtech.studio.dao.IWorksToStyleDao;
 import net.shangtech.studio.entity.PhotoWorks;
+import net.shangtech.studio.entity.Style;
 import net.shangtech.studio.entity.WorksToStyle;
 import net.shangtech.studio.service.IPhotoWorksService;
 
@@ -18,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
+
 
 @Service
 @Transactional
@@ -25,6 +29,7 @@ public class PhotoWorksService extends BaseService<PhotoWorks> implements IPhoto
 
 	@Autowired private IPhotoWorksDao dao;
 	@Autowired private IWorksToStyleDao worksToStyleDao;
+	@Autowired private IStyleDao styleDao;
 
 	@Override
     public Pagination<PhotoWorks> findByPhotographerByPage(Pagination<PhotoWorks> pagination, Long author) {
@@ -80,6 +85,70 @@ public class PhotoWorksService extends BaseService<PhotoWorks> implements IPhoto
 	@Override
     public PhotoWorks findByUrl(String url) {
 	    return dao.findOneByProperties(MapHolder.instance("url", url));
+    }
+
+	@Override
+    public void save(PhotoWorks works, List<Long> styles) {
+	    dao.save(works);
+	    if(styles != null){
+	    	styles.forEach(styleId -> {
+	    		WorksToStyle old = worksToStyleDao.findOneByProperties(MapHolder.instance("style.id", styleId).put("works.id", works.getId()));
+	    		if(old == null){
+		    		Style style = styleDao.find(styleId);
+		    		if(style != null){
+		    			WorksToStyle wts = new WorksToStyle();
+		    			wts.setPhotoWorks(works);
+		    			wts.setStyle(style);
+		    			worksToStyleDao.save(wts);
+		    		}
+	    		}
+	    	});
+	    }
+    }
+
+	@Override
+    public void update(PhotoWorks works, List<Long> styles) {
+		Assert.notNull(works, "can not update a null object");
+		Assert.notNull(works.getId(), "id of object to update can not be null");
+		PhotoWorks old = dao.find(works.getId());
+		if(old != null){
+			old.setAddress(works.getAddress());
+			old.setDescription(works.getDescription());
+			old.setHearts(works.getHearts());
+			if(StringUtils.isNotBlank(works.getImage())){
+				old.setImage(works.getImage());
+			}
+			if(StringUtils.isNotBlank(works.getImages())){
+				old.setImages(works.getImages());
+			}
+			old.setImages(works.getImages());
+			old.setName(works.getName());
+			dao.update(old);
+			if(styles != null){
+				// 新增的wts
+				styles.forEach(styleId -> {
+					WorksToStyle oldWts = worksToStyleDao.findOneByProperties(MapHolder.instance("style.id", styleId).put("photoWorks.id", works.getId()));
+		    		if(oldWts == null){
+			    		Style style = styleDao.find(styleId);
+			    		if(style != null){
+			    			WorksToStyle wts = new WorksToStyle();
+			    			wts.setPhotoWorks(old);
+			    			wts.setStyle(style);
+			    			worksToStyleDao.save(wts);
+			    		}
+		    		}
+				});
+				// 删除的wts
+				List<WorksToStyle> wtsList = worksToStyleDao.findByProperties(MapHolder.instance("photoWorks.id", old.getId()));
+				if(!CollectionUtils.isEmpty(wtsList)){
+					wtsList.forEach(wts -> {
+						if(styles != null && !CollectionUtils.containsInstance(styles, wts.getStyle().getId())){
+							worksToStyleDao.delete(wts.getId());
+						}
+					});
+				}
+			}
+		}
     }
 	
 	

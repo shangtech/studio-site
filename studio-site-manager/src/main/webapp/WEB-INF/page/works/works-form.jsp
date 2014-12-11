@@ -66,6 +66,7 @@
 	<div class="form-group">
 		<label class="col-sm-2 control-label">作品风格</label>
 		<div class="col-sm-10">
+			<label class="checkbox-inline" style="display:none;"></label>
 			<c:forEach items="${styles}" var="item">
 			<label class="checkbox-inline">
 			  <input type="checkbox" name="styles" value="${item.id}"${fn:contains(styleIds, item.id) ? ' checked' : ''}> ${item.name} 

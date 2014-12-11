@@ -13,4 +13,6 @@ public interface IPhotoWorksService extends IBaseService<PhotoWorks> {
 	List<WorksToStyle> findByStyle(Long style);
 	List<PhotoWorks> findByPhotographer(Long photographer);
 	PhotoWorks findByUrl(String url);
+	void save(PhotoWorks works, List<Long> styles);
+	void update(PhotoWorks works, List<Long> styles);
 }

@@ -96,12 +96,12 @@ public class WorksController {
 	}
 	
 	@RequestMapping("/save")
-	public String save(PhotoWorks works, List<Long> styles, Model model){
-		return save(null, works, styles, model);
+	public String save(WorksVo works, Model model){
+		return save(works.getAuthor(), works, model);
 	}
 	
 	@RequestMapping("/{author}/save")
-	public String save(@PathVariable Long author, PhotoWorks works, List<Long> styles, Model model){
+	public String save(@PathVariable Long author, WorksVo works, Model model){
 		Photographer photographer = null;
 		if(author != null){
 			photographer = photographerService.find(author);
@@ -115,18 +115,16 @@ public class WorksController {
 			model.addAttribute("works", works);
 			return "manager.works.form";
 		}
+		List<Long> styles = works.getStyles();
+		if(styles == null){
+			styles = new ArrayList<>();
+		}
 		if(works.getId() == null){
 			works.setAuthor(photographer.getId());
-			service.save(works);
+			service.save(works, styles);
 		}
 		else {
-			service.update(works);
-		}
-		List<WorksToStyle> wtsList = styleService.findByWorks(works.getId());
-		if(!CollectionUtils.isEmpty(wtsList)){
-			wtsList.forEach(wts -> {
-				
-			});
+			service.update(works, styles);
 		}
 		return "redirect:/works" + (author==null ? "" : "/"+author);
 	}
@@ -140,4 +138,18 @@ public class WorksController {
 		return ajaxResponse;
 	}
 	
+}
+class WorksVo extends PhotoWorks{
+	
+    private static final long serialVersionUID = -1589117717469160291L;
+    
+	private List<Long> styles;
+	
+	public List<Long> getStyles() {
+		return styles;
+	}
+	
+	public void setStyles(List<Long> styles) {
+		this.styles = styles;
+	}
 }
