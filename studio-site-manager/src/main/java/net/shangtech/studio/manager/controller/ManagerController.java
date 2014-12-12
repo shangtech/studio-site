@@ -61,6 +61,7 @@ public class ManagerController {
 			GenericFile genericFile = new GenericFile();
 			genericFile.setName(file.getOriginalFilename().substring(0, file.getOriginalFilename().lastIndexOf(".")));
 			genericFile.setExtend(file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")));
+			genericFile.setLength(file.getSize());
 			try {
 	            genericFile.setIs(file.getInputStream());
 	            map.put(file.getName(), fileSaver.save(genericFile));

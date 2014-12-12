@@ -15,7 +15,7 @@
 		<c:forEach items="${pagination.items}" var="item">
 		<div class="col-sm-6 col-md-3">
 			<div class="thumbnail">
-				<img src="${ctx}/${item.image}"/>
+				<img src="${imagePath}/${item.image}"/>
 				<div class="caption">
 					<h3>${item.name}</h3>
 					<p>从业：${item.experience}</p>

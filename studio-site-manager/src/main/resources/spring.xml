@@ -18,7 +18,12 @@
 	<aop:aspectj-autoproxy/>
 	
 	<bean id="propertyConfigure" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="/WEB-INF/classes/config/jdbc.properties"></property>
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/classes/config/jdbc.properties</value>
+				<value>/WEB-INF/classes/config/aliyun.properties</value>
+			</list>
+		</property>
 	</bean>
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driver}"></property>
@@ -61,7 +66,10 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<bean id="fileNameGenerator" class="net.shangtech.framework.file.impl.DateFileNameGenerator"></bean>
-	<bean id="fileSaver" class="net.shangtech.framework.file.impl.AppPathFileSaver">
+	<bean id="fileSaver" class="net.shangtech.framework.file.impl.AliOSSFileSaver">
 		<property name="fileNameGenerator" ref="fileNameGenerator"/>
+		<property name="accessKeyId" value="${aliyun.access.key.id}"/>
+		<property name="accessKeySecret" value="${aliyun.access.key.secret}"/>
+		<property name="bucketName" value="shangtech-test"/>
 	</bean>
 </beans>
