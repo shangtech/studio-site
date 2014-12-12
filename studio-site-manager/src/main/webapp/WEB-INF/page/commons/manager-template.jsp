@@ -11,7 +11,7 @@
 	
 	<!-- Bootstrap -->
 	<link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.css" rel="stylesheet">
-	<link href="${ctx}/css/studio-manager.css" rel="stylesheet">
+	<link href="${cssPath}/css/studio-manager.css?${cssVersion}" rel="stylesheet">
 	
 	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -21,7 +21,10 @@
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript">var ctx = '${ctx}';</script>
+    <script type="text/javascript">
+    var ctx = '${ctx}';
+    var imagePath = '${imagePath}';
+    </script>
 </head>
 <body>
 	<header class="navbar navbar-static-top manager-nav" rol="banner">
@@ -49,6 +52,6 @@
 	<div class="container manager-container">
 		<t:insertAttribute name="content"/>
 	</div>
-	<script type="text/javascript" src="${ctx}/js/jquery.form.js"></script>
-	<script type="text/javascript" src="${ctx}/js/studio-manager.js"></script>
+	<script type="text/javascript" src="${jsPath}/js/jquery.form.js?${jsVersion}"></script>
+	<script type="text/javascript" src="${jsPath}/js/studio-manager.js${jsVersion}"></script>
 </body>

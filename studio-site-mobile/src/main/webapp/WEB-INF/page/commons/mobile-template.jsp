@@ -19,7 +19,12 @@
 	<link href="${ctx}/css/jquery.mobile-1.4.2.css" rel="stylesheet">
 	<link href="${ctx}/css/mobile-css.css" rel="stylesheet">
 	
-    <script type="text/javascript">var ctx = '${ctx}';</script>
+    <script type="text/javascript">
+    var ctx = '${ctx}';
+    var imagePath = '${imagePath}';
+    var jsPath = '${jsPath}';
+    var cssPath = '${cssPath}';
+    </script>
 </head>
 <body class="ui-mobile-viewport ui-overlay-a" style="zoom:1;">
     <section data-role="page" id="first" data-theme="a" data-url="first" tabindex="0" class="ui-page ui-page-theme-a ui-page-active" style="min-height: 667px;">
