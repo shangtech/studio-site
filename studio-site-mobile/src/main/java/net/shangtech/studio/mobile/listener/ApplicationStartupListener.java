@@ -28,8 +28,8 @@ public class ApplicationStartupListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
 		logger.info("load propreties when app startup");
 		SitePropertyUtils.refreshProperties(sce.getServletContext());
-		ISitePropertyRemoteService service = new SitePropertyRemoteService(sce.getServletContext());
 		try {
+			ISitePropertyRemoteService service = new SitePropertyRemoteService(sce.getServletContext());
 			LocateRegistry.createRegistry(8888);
 	        Naming.rebind("rmi://127.0.0.1:8888/property-service", service);
         } catch (RemoteException | MalformedURLException e) {

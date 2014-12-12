@@ -1,28 +1,34 @@
 package net.shangtech.studio.mobile.remote;
 
-import javax.servlet.ServletContext;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.servlet.ServletContext;
 
 import net.shangtech.studio.remote.ISitePropertyRemoteService;
 import net.shangtech.studio.util.SitePropertyUtils;
 
-public class SitePropertyRemoteService implements ISitePropertyRemoteService {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class SitePropertyRemoteService extends UnicastRemoteObject implements ISitePropertyRemoteService {
+    
+    public SitePropertyRemoteService(ServletContext sc) throws RemoteException{
+    	super();
+		this.servletContext = sc;
+	}
+
+	private static final long serialVersionUID = -8358699124941984965L;
 
 	private static final Logger logger = LoggerFactory.getLogger(SitePropertyRemoteService.class);
 	
 	private ServletContext servletContext;
 	
 	@Override
-    public void refreshSiteProperties() {
+    public void refreshSiteProperties() throws RemoteException {
 	    logger.info("远程刷新站点properties方法被调用了");
 	    SitePropertyUtils.refreshProperties(getServletContext());
     }
-	
-	public SitePropertyRemoteService(ServletContext sc){
-		this.servletContext = sc;
-	}
 
 	public ServletContext getServletContext() {
 		return servletContext;
