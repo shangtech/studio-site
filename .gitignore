@@ -5,7 +5,7 @@
 bin
 
 jdbc.properties
-alioss.properties
+aliyun.properties
 
 target/
 
