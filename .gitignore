@@ -5,6 +5,7 @@
 bin
 
 jdbc.properties
+alioss.properties
 
 target/
 
