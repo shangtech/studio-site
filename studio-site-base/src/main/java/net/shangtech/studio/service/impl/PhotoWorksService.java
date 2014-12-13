@@ -92,7 +92,7 @@ public class PhotoWorksService extends BaseService<PhotoWorks> implements IPhoto
 	    dao.save(works);
 	    if(styles != null){
 	    	styles.forEach(styleId -> {
-	    		WorksToStyle old = worksToStyleDao.findOneByProperties(MapHolder.instance("style.id", styleId).put("works.id", works.getId()));
+	    		WorksToStyle old = worksToStyleDao.findOneByProperties(MapHolder.instance("style.id", styleId).put("photoWorks.id", works.getId()));
 	    		if(old == null){
 		    		Style style = styleDao.find(styleId);
 		    		if(style != null){
