@@ -11,7 +11,6 @@
 	<!-- jquery & mobile -->
 	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
 	<script src="http://cdn.bootcss.com/jquery-mobile/1.4.2/jquery.mobile.min.js"></script>
-	<script src="http://cdn.bootcss.com/jquery-mobile/1.4.2/jquery.mobile.min.js"></script>
     <!--<link href="http://cdn.bootcss.com/jquery-mobile/1.4.2/jquery.mobile.min.css" rel="stylesheet">-->
 	
 	<!-- local  -->
@@ -49,7 +48,8 @@
 	        </div>
         </header>
         <article class="warpBox">
-     	<t:insertAttribute name="content" />
+     	    <t:insertAttribute name="content" />
      	</article>
     </section>
 </body>
+</html>

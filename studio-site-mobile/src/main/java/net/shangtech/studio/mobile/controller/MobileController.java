@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.shangtech.framework.dao.support.Pagination;
+import net.shangtech.studio.entity.Appointment;
 import net.shangtech.studio.entity.PhotoWorks;
 import net.shangtech.studio.entity.Photographer;
 import net.shangtech.studio.entity.Style;
 import net.shangtech.studio.entity.WorksToStyle;
 import net.shangtech.studio.mobile.controller.vo.PhotoWorksVo;
 import net.shangtech.studio.mobile.controller.vo.PhotographerVo;
+import net.shangtech.studio.service.IAppointmentService;
 import net.shangtech.studio.service.IPhotoWorksService;
 import net.shangtech.studio.service.IPhotographerService;
 import net.shangtech.studio.service.IStyleService;
@@ -30,6 +32,7 @@ public class MobileController {
 	@Autowired private IPhotographerService photographerService;
 	@Autowired private IPhotoWorksService worksService;
 	@Autowired private IStyleService styleService;
+	@Autowired private IAppointmentService appointmentService;
 
 	@RequestMapping({ "/", "/main", "/index" })
 	public String index(Model model) {
@@ -157,6 +160,58 @@ public class MobileController {
 		Photographer author = photographerService.find(work.getAuthor());
 		model.addAttribute("author", author);
 		return "mobile.works.detail";
+	}
+	
+	/**
+	 * 预约界面
+	 * 
+	 * @param url
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/appointment")
+	public String toAppointment(@RequestParam(required = true) String url, Model model){
+		Photographer photographer = photographerService.findByUrl(url);
+		model.addAttribute("photographer", photographer);
+		return "mobile.appointment";
+	}
+	
+	/**
+	 * 保存预约
+	 * 
+	 * @param appoint
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/appointment/save", method = RequestMethod.POST)
+	public Appointment saveAppointment(Appointment appoint, Model model){
+		if(Appointment.AppointmentType.PHOTOGRAPHER.toString().equals(appoint.getAppointmentType())){
+			if(appoint.getPurpose() != null){
+			   Photographer author =  photographerService.find(appoint.getPurpose());
+			   appoint.setTarget(author);
+			}
+		}
+		try {
+			appointmentService.save(appoint);
+			appoint.setId(Long.valueOf(0));
+		} catch (Exception e) {
+			e.printStackTrace();
+			appoint.setId(Long.valueOf(1));
+		}
+		return appoint;
+	}
+	
+	/**
+	 * 预约结果界面
+	 * 
+	 * @param url
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/appointment/result")
+	public String appointmentResult(Model model){
+		return "mobile.appointment.result";
 	}
 	
 }

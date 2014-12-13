@@ -107,7 +107,6 @@
 			</div>
 	</div>
 	<div id="footerbtn" class="iTel clear">
-        <a data-ajax="false" href="/theme/rob/133/92" class="zxyy ui-link">在线预约</a>
-        <a data-ajax="false" href="http://qiao.baidu.com/v3/?module=default&amp;controller=im&amp;action=index&amp;ucid=7522785&amp;type=n&amp;siteid=5940394" class="iOnline ui-link">在线客服</a>
+        <a data-ajax="false" href="${ctx}/appointment?url=${photographer.url}" class="zxyy ui-link">在线预约</a>
     </div>
 </article>
