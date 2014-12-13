@@ -49,7 +49,7 @@
 		<c:forEach items="${pagination.items}" var="item">
 		<div class="col-sm-6 col-md-4 photo-works-style">
 			<div class="thumbnail">
-				<img src="${ctx}/${item.photoWorks.image}"/>
+				<img src="${imagePath}/${item.photoWorks.image}"/>
 				<div class="caption">
 					<h3>${item.photoWorks.name}</h3>
 					<p>${item.photoWorks.photographer.name}作品</p>
