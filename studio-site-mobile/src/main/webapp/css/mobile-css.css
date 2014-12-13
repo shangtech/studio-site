@@ -296,7 +296,7 @@ textarea{resize:none; overflow:auto; outline:none;}
 .eUser span:nth-child(2){ margin:0 2em;}
 
 /* syslist css  */
-.sSysList{ width:100%; background-color:#eaeaea; padding-bottom:0.1em; margin-top:6.75em; }
+.sSysList{ width:100%; background-color:#eaeaea; padding-bottom:0.1em; margin-top:1.75em; }
 .sSysList li{ margin-bottom:0.8em; padding:1em; background-color:#fff; box-sizing:border-box; -webkit-box-sizing:border-box; /* Safari */}
 .sSysList li a{ color:#000;}
 .sSysImg{ width:12em; height:12em; float:left;}

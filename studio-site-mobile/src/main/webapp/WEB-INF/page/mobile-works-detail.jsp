@@ -11,7 +11,7 @@
 	<a style="display: block; width: 100%;" href="${ctx}/photographer/${author.url}" data-ajax="false" class="ui-link">
 		<div class="worksSys clear">
 			<div class="worksSysImg">
-				<img src="${author.image}">
+				<img src="${imagePath}/${author.image}">
 			</div>
 			<p class="workSysName">
 				${author.name}<span>作品</span>
@@ -22,7 +22,7 @@
 	</a>
 	<div class="workImgBox">
 	    <c:forTokens var="str" items="${work.images}" delims="|," varStatus="status">  
-		    <img src="${ctx}/${str}">
+		    <img src="${imagePath}//${str}">
 	    </c:forTokens>
 	</div>
 </div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <c:forEach items="${pagination.items}" var="item">
 	<div class="dWorks" onclick="location.href='${ctx}/works/${item.url}';">
-		<img src="${ctx}/${item.image}">
+		<img src="${imagePath}/${item.image}">
 		<div class="dWorksTitle clear">
 			<h2>${item.name}</h2>
 			<div class="dWorksTitleRight clear">

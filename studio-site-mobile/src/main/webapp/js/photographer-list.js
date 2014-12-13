@@ -1,5 +1,5 @@
-var iTotal = '36';
 //点击加载更多
+var hasMore = $(".datas-lists-size").html() == 8;
 var setPage = 2;
 var downStatus = false;
 var timer = null;
@@ -8,7 +8,7 @@ $("#sSysList").on("touchmove",function(){
 		downStatus = true;
 		$('#morebtn').show();
 		timer = setTimeout(function(){			
-			if(setPage*8<iTotal){
+			if(hasMore){
 				if(downStatus){
 					getLoad(setPage);
 				}
@@ -23,7 +23,7 @@ $("#sSysList").on("touchmove",function(){
 
 function getLoad(page){
 	jQuery.ajax({
-		url:"/photographer",
+		url:ctx + "/photographer",
 		type:"POST",
 		dataType:'json',
 		async: false,
@@ -32,6 +32,9 @@ function getLoad(page){
 			$('#morebtn').show();
 		},	
 		success:function(data){
+			if(data.lenght < 8){
+				hasMore = false;
+			}
 			var htmlLoad = '';
 			jQuery.each(data,function(i,item){	
 				var locationHref = "location.href='/photographer/"+item.url+"'";

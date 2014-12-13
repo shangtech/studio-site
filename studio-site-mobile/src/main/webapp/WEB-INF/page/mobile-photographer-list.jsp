@@ -17,3 +17,4 @@
 </ul>
 <a class="morebtn ui-link" id="morebtn" style="display: none;">加载中...</a>
 <script type="text/javascript" src="${ctx}/js/photographer-list.js"></script>
+<div class="datas-lists-size" style="display: none;">${pagination.items.size()}</div>

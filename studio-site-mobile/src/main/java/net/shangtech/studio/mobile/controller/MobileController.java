@@ -7,6 +7,7 @@ import net.shangtech.framework.dao.support.Pagination;
 import net.shangtech.studio.entity.PhotoWorks;
 import net.shangtech.studio.entity.Photographer;
 import net.shangtech.studio.entity.Style;
+import net.shangtech.studio.entity.WorksToStyle;
 import net.shangtech.studio.mobile.controller.vo.PhotoWorksVo;
 import net.shangtech.studio.mobile.controller.vo.PhotographerVo;
 import net.shangtech.studio.service.IPhotoWorksService;
@@ -20,6 +21,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -82,32 +84,60 @@ public class MobileController {
 	 * @return
 	 */
 	@RequestMapping(value = "/works", method = RequestMethod.GET)
-	public String works(Model model){
-		List<PhotoWorksVo> works = worksList(new Pagination<PhotoWorks>(8));
+	public String works(@RequestParam(required = false) Long styleId, Model model){
+		List<PhotoWorksVo> works = worksListByStyle(styleId, new Pagination<PhotoWorks>(8));
 		Pagination<PhotoWorksVo> pagination = new Pagination<PhotoWorksVo>(8);
 		pagination.setItems(works);
 		model.addAttribute("pagination", pagination);
 		List<Style> styles = styleService.findAll();
 		model.addAttribute("style", styles);
+		model.addAttribute("styleId", styleId);
 		return "mobile.works";
 	}
 	
+	/**
+	 * 某个风格的作品
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/works", method = RequestMethod.POST)
-	public List<PhotoWorksVo> worksList(Pagination<PhotoWorks> pagination){
+	public List<PhotoWorksVo> worksListByStyle(@RequestParam(required = false) Long styleId, 
+			Pagination<PhotoWorks> pagination) {
 		List<PhotoWorksVo> list = new ArrayList<>();
-		worksService.findAllByPage(pagination);
-		if(!CollectionUtils.isEmpty(pagination.getItems())){
-			pagination.getItems().forEach(work -> {
-				PhotoWorksVo vo = new PhotoWorksVo();
-				vo.setImage(work.getImage());
-				vo.setUrl(work.getUrl());
-				vo.setName(work.getName());
-				vo.setAddress(work.getAddress());
-				vo.setHearts(work.getHearts());
-				vo.setAuthor(photographerService.find(work.getAuthor()).getName());
-				list.add(vo);
-			});
+		if(styleId == null){ // 没有styleId的情况
+			worksService.findAllByPage(pagination);
+			if(!CollectionUtils.isEmpty(pagination.getItems())){
+				pagination.getItems().forEach(work -> {
+					PhotoWorksVo vo = new PhotoWorksVo();
+					vo.setImage(work.getImage());
+					vo.setUrl(work.getUrl());
+					vo.setName(work.getName());
+					vo.setAddress(work.getAddress());
+					vo.setHearts(work.getHearts());
+					vo.setAuthor(photographerService.find(work.getAuthor()).getName());
+					list.add(vo);
+				});
+			}
+		}else{ // 有StyleId的情况
+			Pagination<WorksToStyle> pages = new Pagination<WorksToStyle>();
+			pages.setPageNo(pagination.getPageNo());
+			pages.setLimit(pagination.getLimit());
+			worksService.findByStyleByPage(pages, styleId);
+			if(!CollectionUtils.isEmpty(pages.getItems())){
+				pages.getItems().forEach(workToStyle -> {
+					PhotoWorksVo item = new PhotoWorksVo();
+					item.setImage(workToStyle.getPhotoWorks().getImage());
+					item.setUrl(workToStyle.getPhotoWorks().getUrl());
+					item.setName(workToStyle.getPhotoWorks().getName());
+					item.setAddress(workToStyle.getPhotoWorks().getAddress());
+					item.setHearts(workToStyle.getPhotoWorks().getHearts());
+					item.setAuthor(photographerService.find(workToStyle.getPhotoWorks().getAuthor()).getName());
+					list.add(item);
+				});
+			}
 		}
 		return list;
 	}
@@ -129,20 +159,4 @@ public class MobileController {
 		return "mobile.works.detail";
 	}
 	
-	/**
-	 * 
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/works/style/{id}")
-	public String worksListByStyle(@PathVariable String id, Model model){
-		List<PhotoWorksVo> works = worksList(new Pagination<PhotoWorks>(8));
-		Pagination<PhotoWorksVo> pagination = new Pagination<PhotoWorksVo>(8);
-		pagination.setItems(works);
-		model.addAttribute("pagination", pagination);
-		List<Style> styles = styleService.findAll();
-		model.addAttribute("style", styles);
-		return "mobile.works";
-	}
 }

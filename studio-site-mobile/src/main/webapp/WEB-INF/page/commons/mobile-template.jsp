@@ -48,6 +48,8 @@
 	            </ul>
 	        </div>
         </header>
+        <article class="warpBox">
      	<t:insertAttribute name="content" />
+     	</article>
     </section>
 </body>
