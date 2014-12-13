@@ -6,7 +6,7 @@
         <div class="dOrderNums">预约次数<span>${photographer.appointments}</span></div>
         <div class="clear">
             <div class="dSysInformationLeft">
-                <img src="http://image.onlylover.com/201408/19/image_14084469728707_240_240.jpg">
+                <img src="${imagePath}/${photographer.image}">
             </div>
             <div class="dSysInformationRight">
                 <h1>${photographer.name}</h1>
@@ -94,7 +94,7 @@
 			<div class="dWorksWarp"><!-- 摄影师有多套作品的时候显示此div -->
 				<c:forEach items="${works}" var="item">
 				<div class="dWorks">
-					<a href="/theme/themeDetail/160" data-ajax="false" class="ui-link"><img src="http://image.onlylover.com/201409/29/image_14119581495274_325_217.jpg"></a>
+					<a href="/theme/themeDetail/160" data-ajax="false" class="ui-link"><img src="${imagePath}/${item.image}"></a>
                     <div class="dWorksTitle clear">
                     	<h2>${item.name}</h2>
                         <div class="dWorksTitleRight clear">

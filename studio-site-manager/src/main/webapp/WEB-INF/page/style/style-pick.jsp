@@ -10,7 +10,7 @@
 		<c:forEach items="${pagination.items}" var="item">
 		<div class="col-sm-6 col-md-4 works">
 			<div class="thumbnail">
-				<img src="${ctx}/${item.image}"/>
+				<img src="${imagePath}/${item.image}"/>
 				<div class="caption">
 					<h3>${item.name}</h3>
 					<p>${item.photographer.name}作品</p>

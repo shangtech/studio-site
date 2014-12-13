@@ -24,7 +24,7 @@
 				<c:forEach items="${pagination.items}" var="item">
 				<div class="col-sm-6 col-md-4">
 					<div class="thumbnail">
-						<img src="${ctx}/${item.image}"/>
+						<img src="${imagePath}/${item.image}"/>
 						<div class="caption">
 							<h3>${item.name}</h3>
 							<c:if test="${(empty author) and (not empty item.photographer)}">

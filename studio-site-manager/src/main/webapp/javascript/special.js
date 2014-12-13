@@ -15,8 +15,8 @@ $(document).ready(function(){
 				form.remove();
 				if(data.data){
 					for(var key in data.data){
-						progress.html(ctx + '/' + data.data[key]);
-						$('#insert-image-url').val(ctx + '/' + data.data[key]);
+						progress.html(imagePath + '/' + data.data[key]);
+						$('#insert-image-url').val(imagePath + '/' + data.data[key]);
 						break;
 					}
 				}

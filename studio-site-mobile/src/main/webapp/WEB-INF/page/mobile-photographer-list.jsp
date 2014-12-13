@@ -4,7 +4,7 @@
 <ul class="sSysList" id="sSysList">
 	<c:forEach items="${pagination.items}" var="item">
 	<li class="clear" onclick="location.href='${ctx}/photographer/${item.url}'" style="background-color: rgb(255, 255, 255);">
-		<img src="http://image.onlylover.com/201408/25/image_14089577863468_240_240.jpg" class="sSysImg">
+		<img src="${imagePath}/${item.image}" class="sSysImg">
 		<div class="sSysContent">
 			<h1>${item.name}</h1>
 			<div class="sOrderNumTips">已被预约<span>${item.appointments}</span>次 </div>

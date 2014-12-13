@@ -80,7 +80,7 @@
 	<c:forTokens items="${works.images}" delims="," var="item">
 	<div class="col-sm-6 col-md-3 works-image-form">
 		<a class="thumbnail" href="javascript:;">
-			<img src="${ctx}/${item}" data-src="${item}"/>
+			<img src="${imagePath}/${item}" data-src="${item}"/>
 			<div class="caption center">
 				<button href="javascript;:" class="btn btn-default pull-left move-left">左移</button>
 				<button href="javascript;:" class="btn btn-default remove">移除</button>
