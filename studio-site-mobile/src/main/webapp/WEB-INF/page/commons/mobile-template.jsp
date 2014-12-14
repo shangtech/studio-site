@@ -43,7 +43,7 @@
 	                <li><a href="${ctx}/" data-ajax="false" class="isy ui-link">首页</a></li>
 	                <li><a href="${ctx}/photographer" data-ajax="false" class="isys ui-link">摄影师</a></li>
 	                <li><a href="${ctx}/works" data-ajax="false" class="izp ui-link">作品</a></li>
-	                <li><a href="${ctx}/" data-ajax="false" class="ius ui-link">联系我们</a></li>
+	                <li><a href="${ctx}/contactus" data-ajax="false" class="ius ui-link">联系我们</a></li>
 	            </ul>
 	        </div>
         </header>

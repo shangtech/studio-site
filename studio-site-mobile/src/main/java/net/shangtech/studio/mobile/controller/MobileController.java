@@ -7,6 +7,7 @@ import net.shangtech.framework.dao.support.Pagination;
 import net.shangtech.studio.entity.Appointment;
 import net.shangtech.studio.entity.PhotoWorks;
 import net.shangtech.studio.entity.Photographer;
+import net.shangtech.studio.entity.SpecialPage;
 import net.shangtech.studio.entity.Style;
 import net.shangtech.studio.entity.WorksToStyle;
 import net.shangtech.studio.mobile.controller.vo.PhotoWorksVo;
@@ -14,6 +15,7 @@ import net.shangtech.studio.mobile.controller.vo.PhotographerVo;
 import net.shangtech.studio.service.IAppointmentService;
 import net.shangtech.studio.service.IPhotoWorksService;
 import net.shangtech.studio.service.IPhotographerService;
+import net.shangtech.studio.service.ISpecialPageService;
 import net.shangtech.studio.service.IStyleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,7 @@ public class MobileController {
 	@Autowired private IPhotoWorksService worksService;
 	@Autowired private IStyleService styleService;
 	@Autowired private IAppointmentService appointmentService;
+	@Autowired private ISpecialPageService pageService;
 
 	@RequestMapping({ "/", "/main", "/index" })
 	public String index(Model model) {
@@ -212,6 +215,19 @@ public class MobileController {
 	@RequestMapping("/appointment/result")
 	public String appointmentResult(Model model){
 		return "mobile.appointment.result";
+	}
+	
+	/**
+	 * 联系我们界面
+	 *  
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/contactus")
+	public String contactUs(Model model) {
+		SpecialPage page = pageService.findByUrl("contactus");
+		model.addAttribute("page", page);
+		return "mobile.contactus";
 	}
 	
 }

@@ -28,4 +28,7 @@
 	<definition name="mobile.appointment.result" extends="mobile.template">
 		<put-attribute name="content" value="/WEB-INF/page/mobile-appointment-result.jsp" />
 	</definition>
+	<definition name="mobile.contactus" extends="mobile.template">
+		<put-attribute name="content" value="/WEB-INF/page/mobile-special-page.jsp" />
+	</definition>
 </tiles-definitions>

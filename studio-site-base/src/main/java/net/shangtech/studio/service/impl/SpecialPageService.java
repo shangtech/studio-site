@@ -1,9 +1,11 @@
 package net.shangtech.studio.service.impl;
 
+import net.shangtech.framework.dao.support.MapHolder;
 import net.shangtech.framework.service.BaseService;
 import net.shangtech.studio.service.ISpecialPageService;
 import net.shangtech.studio.entity.SpecialPage;
 import net.shangtech.studio.dao.ISpecialPageDao;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,4 +31,11 @@ public class SpecialPageService extends BaseService<SpecialPage> implements ISpe
 			dao.update(old);
 		}
 	}
+
+	@Override
+	public SpecialPage findByUrl(String url) {
+		SpecialPage item = dao.findOneByProperties(MapHolder.instance("url", url));
+		return item;
+	}
+	
 }
