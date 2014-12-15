@@ -31,6 +31,7 @@ public class AppointmentController {
 	
 	@RequestMapping({"/special/{special}"})
 	public String listSpecial(@PathVariable Long special, Pagination<Appointment> pagination, Model model){
+		pagination.setLimit(10);
 		service.findBySpecial(special, pagination);
 		pagination.getItems().forEach(appointment -> {
 			appointment.setTarget(specialService.find(appointment.getPurpose()));
@@ -50,6 +51,7 @@ public class AppointmentController {
 	
 	@RequestMapping({"/photographer/{photographer}"})
 	public String listPhotographer(@PathVariable Long photographer, Pagination<Appointment> pagination, Model model){
+		pagination.setLimit(10);
 		service.findByPhotographer(photographer, pagination);
 		pagination.getItems().forEach(appointment -> {
 			appointment.setTarget(photographerService.find(appointment.getPurpose()));
