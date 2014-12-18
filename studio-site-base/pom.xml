@@ -61,7 +61,7 @@
 		<repository>
 			<id>shangtech-repository</id>
 			<name>shangtech-repository</name>
-			<url>https://github.com/shangtech/shangtech-repository</url>
+			<url>https://raw.github.com/shangtech/shangtech-repository/master</url>
 		</repository>
 	</repositories>
 </project>
