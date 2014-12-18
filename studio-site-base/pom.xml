@@ -57,4 +57,11 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>shangtech-repository</id>
+			<name>shangtech-repository</name>
+			<url>https://github.com/shangtech/shangtech-repository</url>
+		</repository>
+	</repositories>
 </project>
