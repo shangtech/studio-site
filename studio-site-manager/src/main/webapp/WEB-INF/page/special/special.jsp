@@ -44,6 +44,21 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="col-sm-2 control-label">封面</label>
+				<div class="col-sm-10">
+					<div class="input-group">
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0;"></div>
+						</div>
+						<span class="input-group-btn">
+							<a href="javascript:;" class="btn btn-default">浏览</a>
+						</span>
+					</div>
+					<input type="file" class="transparent hiddenfile auto-upload" for="image"/>
+					<input type="hidden" class="form-control" name="image" value="${special.image}"/>
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="col-sm-2 control-label">页面描述</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="pageDescription" value="${special.pageDescription}" placeholder="页面描述"/>
@@ -62,6 +77,9 @@
 				    </label>
 				    <label class="checkbox-inline">
 				    	<input type="checkbox" name="showTel"<c:if test="${special.showTel}"> checked</c:if>> 显示电话按钮
+				    </label>
+				    <label class="checkbox-inline">
+				    	<input type="checkbox" name="showIndex"<c:if test="${special.showIndex}"> checked</c:if>> 推到首页
 				    </label>
 				</div>
 			</div>

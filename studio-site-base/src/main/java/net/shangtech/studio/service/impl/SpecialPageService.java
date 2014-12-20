@@ -6,6 +6,7 @@ import net.shangtech.studio.service.ISpecialPageService;
 import net.shangtech.studio.entity.SpecialPage;
 import net.shangtech.studio.dao.ISpecialPageDao;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,10 @@ public class SpecialPageService extends BaseService<SpecialPage> implements ISpe
 			old.setShowAppointment(special.getShowAppointment());
 			old.setShowTel(special.getShowTel());
 			old.setUrl(special.getUrl());
+			old.setShowIndex(special.getShowIndex());
+			if(StringUtils.isNotBlank(special.getImage())){
+				old.setImage(special.getImage());
+			}
 			dao.update(old);
 		}
 	}

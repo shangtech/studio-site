@@ -41,6 +41,13 @@ public class SpecialPage extends BaseEntity<Long> {
     /** 是否显示联系电话按钮 **/
     @Column(name = "show_tel")
     private Boolean showTel;
+    
+    /** 是否在首页显示 **/
+    @Column(name = "show_index")
+    private Boolean showIndex;
+    
+    /** 封面图 **/
+    private String image;
 
 	public String getName() {
 		return name;
@@ -104,6 +111,22 @@ public class SpecialPage extends BaseEntity<Long> {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Boolean getShowIndex() {
+		return showIndex;
+	}
+
+	public void setShowIndex(Boolean showIndex) {
+		this.showIndex = showIndex;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }
