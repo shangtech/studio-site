@@ -1,10 +1,12 @@
 package net.shangtech.studio.mobile.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import net.shangtech.framework.dao.support.Pagination;
 import net.shangtech.studio.entity.Appointment;
+import net.shangtech.studio.entity.Appointment.AppointmentType;
 import net.shangtech.studio.entity.PhotoWorks;
 import net.shangtech.studio.entity.Photographer;
 import net.shangtech.studio.entity.SpecialPage;
@@ -174,9 +176,19 @@ public class MobileController {
 	 */
 	@RequestMapping("/appointment")
 	public String toAppointment(@RequestParam(required = true) String url, Model model){
+		// 摄影师预约
 		Photographer photographer = photographerService.findByUrl(url);
-		model.addAttribute("photographer", photographer);
+		if (photographer != null) {
+			model.addAttribute("requsetInfo", photographer);
+			model.addAttribute("fromPage", Appointment.AppointmentType.PHOTOGRAPHER.toString());
+			return "mobile.appointment";
+		}
+		// 活动预约
+		SpecialPage page = pageService.findByUrl(url);
+		model.addAttribute("requsetInfo", page);
+		model.addAttribute("fromPage", Appointment.AppointmentType.ACTIVITY.toString());
 		return "mobile.appointment";
+	
 	}
 	
 	/**
@@ -189,12 +201,28 @@ public class MobileController {
 	@ResponseBody
 	@RequestMapping(value = "/appointment/save", method = RequestMethod.POST)
 	public Appointment saveAppointment(Appointment appoint, Model model){
-		if(Appointment.AppointmentType.PHOTOGRAPHER.toString().equals(appoint.getAppointmentType())){
+		if (appoint == null) {
+			appoint = new Appointment();
+			appoint.setId(Long.valueOf(1));
+			return appoint;
+		}
+		// 摄影师预约
+		if (AppointmentType.PHOTOGRAPHER.toString().equals(appoint.getAppointmentType())) {
 			if(appoint.getPurpose() != null){
 			   Photographer author =  photographerService.find(appoint.getPurpose());
 			   appoint.setTarget(author);
 			}
 		}
+		// 活动预约
+		else if (AppointmentType.ACTIVITY.toString().equals(appoint.getAppointmentType())) {
+			if (appoint.getPurpose() != null) {
+				SpecialPage page = pageService.find(appoint.getPurpose());
+				appoint.setTarget(page);
+			}
+		}
+		
+		// 设置创建时间
+		appoint.setCreateTime(new Date());
 		try {
 			appointmentService.save(appoint);
 			appoint.setId(Long.valueOf(0));

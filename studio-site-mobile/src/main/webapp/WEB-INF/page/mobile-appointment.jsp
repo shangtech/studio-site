@@ -38,12 +38,13 @@
 	<div class="ui-body-inherit ui-corner-all ui-shadow-inset">
 		<input type="tel" id="tel" placeholder="输入联系电话">
 	</div>
-	<a href="javascript:;" id="submitbtn" class="submitbtn ui-link">免费预约<span>${photographer.name}</span>的拍摄服务</a>
+	<a href="javascript:;" id="submitbtn" class="submitbtn ui-link">免费预约<span>${requsetInfo.name}</span>的拍摄服务</a>
     <p>1、预约成功后，顾问将向您致电，邀请您进店挑选服装、相框相册，并沟通具体的拍摄内容。</p>
     <p>2、您可以直接拨打电话进行预约。</p>
     <a href="tel:${telphone}" class="ui-link"><p class="submitTel">电话：${telphone}</p></a>
 </div>
-<div style="display:none;" class="photographer-id">${photographer.id}</div>
+<div style="display:none;" class="request-info-id">${requsetInfo.id}</div>
+<div style="display:none;" class="from-page">${fromPage}</div>
 
 <script type="text/javascript">
 	$(document).on("pagebeforecreate", function() {
@@ -54,7 +55,8 @@
 	});
 	
 	function onSubmit(){
-		id=$(".photographer-id").html();
+		id=$(".request-info-id").html();
+		from=$(".from-page").html();
 		name=jQuery("#name").val();
 		tel=jQuery("#tel").val();
 		
@@ -77,7 +79,7 @@
 			//async:false,
 			dataType:'json',
 			//table 表名 field 字段 code 编号值
-			data:{mobile:tel,purpose:id,appointmentType:'PHOTOGRAPHER',memo:name},
+			data:{mobile:tel,purpose:id,appointmentType:from,memo:name},
 			success:function(data){
 				if(data.id==0){
 					// 成功 
