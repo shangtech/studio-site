@@ -21,7 +21,6 @@
 		<property name="locations">
 			<list>
 				<value>/WEB-INF/classes/config/jdbc.properties</value>
-				<value>/WEB-INF/classes/config/aliyun.properties</value>
 			</list>
 		</property>
 	</bean>
