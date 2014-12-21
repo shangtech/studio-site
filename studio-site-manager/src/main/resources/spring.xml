@@ -66,10 +66,8 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<bean id="fileNameGenerator" class="net.shangtech.framework.file.impl.DateFileNameGenerator"></bean>
-	<bean id="fileSaver" class="net.shangtech.framework.file.impl.AliOSSFileSaver">
+	<bean id="fileSaver" class="net.shangtech.framework.file.impl.AppPathFileSaver">
 		<property name="fileNameGenerator" ref="fileNameGenerator"/>
-		<property name="accessKeyId" value="${aliyun.access.key.id}"/>
-		<property name="accessKeySecret" value="${aliyun.access.key.secret}"/>
-		<property name="bucketName" value="shangtech-test"/>
+		<property name="filePath" value="/usr/local/filecenter/uploadfiles"/>
 	</bean>
 </beans>
