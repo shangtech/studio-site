@@ -41,9 +41,28 @@ public class MobileController {
 
 	@RequestMapping({ "/", "/main", "/index" })
 	public String index(Model model) {
+		List<SpecialPage> pages = pageService.findAll();
+		List<SpecialPage> result = new ArrayList<SpecialPage>();
+		if (pages != null) {
+			for (SpecialPage item : pages) {
+				if (item.getShowIndex() != null && item.getShowIndex()) {
+					result.add(item);
+				}
+				if (result.size() >= 3) {
+					break;
+				}
+			}
+		}
+		model.addAttribute("recommend", result);
 		return "mobile.index";
 	}
 	
+	/**
+	 * 摄影师列表请求(get)
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/photographer", method = RequestMethod.GET)
 	public String photographerHome(Model model){
 		Pagination<Photographer> pagination = new Pagination<Photographer>(8);
@@ -52,6 +71,12 @@ public class MobileController {
 		return "mobile.photographer";
 	}
 	
+	/**
+	 * 摄影师列表请求(post),针对Ajax异步请求
+	 * 
+	 * @param pagination
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/photographer", method = RequestMethod.POST)
 	public List<PhotographerVo> photographerList(Pagination<Photographer> pagination){
@@ -73,6 +98,13 @@ public class MobileController {
 		return list;
 	}
 	
+	/**
+	 * 摄影师详情界面
+	 * 
+	 * @param url
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/photographer/{url}")
 	public String photographerDetail(@PathVariable String url, Model model){
 		Photographer photographer = photographerService.findByUrl(url);
@@ -82,6 +114,9 @@ public class MobileController {
 		model.addAttribute("photographer", photographer);
 		List<PhotoWorks> works = worksService.findByPhotographer(photographer.getId());
 		model.addAttribute("works", works);
+		// 增加推荐信息
+		SpecialPage recommend = pageService.findByUrl("recommend");
+		model.addAttribute("recommend", recommend);
 		return "mobile.photographer.detail";
 	}
 	
@@ -256,6 +291,19 @@ public class MobileController {
 		SpecialPage page = pageService.findByUrl("contactus");
 		model.addAttribute("page", page);
 		return "mobile.contactus";
+	}
+	
+	/**
+	 * 活动界面
+	 *  
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/activity/{url}")
+	public String activity(@PathVariable String url, Model model) {
+		SpecialPage page = pageService.findByUrl(url);
+		model.addAttribute("page", page);
+		return "mobile.activity";
 	}
 	
 }

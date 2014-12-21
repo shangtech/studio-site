@@ -31,4 +31,7 @@
 	<definition name="mobile.contactus" extends="mobile.template">
 		<put-attribute name="content" value="/WEB-INF/page/mobile-special-page.jsp" />
 	</definition>
+	<definition name="mobile.activity" extends="mobile.template">
+		<put-attribute name="content" value="/WEB-INF/page/mobile-special-page.jsp" />
+	</definition>
 </tiles-definitions>

@@ -17,6 +17,13 @@
         <img src="${ctx}/images/newindex04.png">
     </a>
 </div>
+<div class="iBox clear">
+	<c:forEach var="item" items="${recommend}">
+		<a href="${ctx}/activity/${item.url}" data-ajax="false" class="ui-link">
+		    <img src="${imagePath}/${item.image}"/>
+		</a>
+	</c:forEach>
+</div>
 <div id="footerbtn" class="iTel">
 	<a href="tel:${telphone}" class="ui-link">电话咨询</a>
 </div>
