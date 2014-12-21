@@ -29,8 +29,6 @@
     <section data-role="page" id="first" data-theme="a" data-url="first" tabindex="0" class="ui-page ui-page-theme-a ui-page-active" style="min-height: 667px;">
     	<header class="iHeader" id="iHeader">
 	    	<img src="${ctx}/images/newLogo.png" onclick="location.href='${ctx}/'" class="iNewLogo">
-	        <p class="iCity">北京</p>
-	        <p class="iOrderText"><span>911</span>人预约摄影师</p>
 	        <nav class="iMainNav">
 	        	<div class="iMainNavBox" id="iMainNavBox">
 	            	<span></span>
