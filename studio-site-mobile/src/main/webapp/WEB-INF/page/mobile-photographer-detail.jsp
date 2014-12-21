@@ -30,7 +30,7 @@
 			<div class="dWorksWarp"><!-- 摄影师有多套作品的时候显示此div -->
 				<c:forEach items="${works}" var="item">
 				<div class="dWorks">
-					<a href="${ctx}/works/{item.url}" data-ajax="false" class="ui-link"><img src="${imagePath}/${item.image}"></a>
+					<a href="${ctx}/works/${item.url}" data-ajax="false" class="ui-link"><img src="${imagePath}/${item.image}"></a>
                     <div class="dWorksTitle clear">
                     	<h2>${item.name}</h2>
                         <div class="dWorksTitleRight clear">
