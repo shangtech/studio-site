@@ -2,6 +2,7 @@ package net.shangtech.studio.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import net.shangtech.framework.dao.support.BaseEntity;
@@ -31,6 +32,7 @@ public class SpecialPage extends BaseEntity<Long> {
     private String pageDescription;
     
     /** 页面内容 **/
+    @Lob
     @Column(name = "page_content")
     private String pageContent;
     
