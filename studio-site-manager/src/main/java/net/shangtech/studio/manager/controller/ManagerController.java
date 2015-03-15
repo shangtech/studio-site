@@ -1,8 +1,11 @@
 package net.shangtech.studio.manager.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -30,12 +33,12 @@ public class ManagerController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ManagerController.class);
 	
-	private static final Properties props = new Properties();
+	private static Properties props = new Properties();
 	
 	private static final String USERNAME_KEY = "username";
 	private static final String PASSWORD_KEY = "password";
 	public static final String SESSION_USER_KEY = "user_in_session";
-	private static final String AUTH_FILE = "config/auth.properties";
+	private static final String AUTH_FILE = "config" + File.separator + "auth.properties";
 	
 	static{
 		try {
@@ -111,17 +114,21 @@ public class ManagerController {
 		AjaxResponse ajaxResponse = AjaxResponse.instance();
 		if(oldUsername.equals(props.getProperty(USERNAME_KEY))
 				&& EncoderUtils.MD5(oldUsername + "@" + oldPassword).equals(props.getProperty(PASSWORD_KEY))){
-			props.setProperty(USERNAME_KEY, username);
-			props.setProperty(PASSWORD_KEY, EncoderUtils.MD5(username + "@" + password));
+			Properties prop = new Properties();
+			prop.setProperty(USERNAME_KEY, username);
+			prop.setProperty(PASSWORD_KEY, EncoderUtils.MD5(username + "@" + password));
 			OutputStream os = null;
 			try {
-				os  = new FileOutputStream(AUTH_FILE);
-	            props.store(os, "");
-	            ajaxResponse.setSuccess(true);
-            } catch (IOException e) {
+				os = new FileOutputStream(getConfigAbsolutePath() + AUTH_FILE);
+				prop.store(os, "");
+				props = prop;
+				ajaxResponse.setSuccess(true);
+				ajaxResponse.setMessage("修改密码成功");
+			} catch (IOException e) {
 	            logger.error("更新账号文件失败", e);
-            }
-			finally {
+				ajaxResponse.setSuccess(false);
+				ajaxResponse.setMessage("修改密码失败");
+            } finally {
 				if(os != null){
 					try {
 	                    os.close();
@@ -132,6 +139,24 @@ public class ManagerController {
 			}
 		}
 		return ajaxResponse;
+	}
+	
+	private static String getConfigAbsolutePath() {
+		try {
+			URL url = ManagerController.class.getResource("");
+			String path = URLDecoder.decode(url.getPath().replaceFirst("/", ""),
+					"UTF-8");
+			String className = ManagerController.class.getPackage().getName().replace(".", "/");
+			path = path.replace(className, "").replace("//", "/");
+			return path;
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		return "";
+	}
+	
+	public static void main(String[] args){
+		System.out.println(getConfigAbsolutePath());
 	}
 	
 }
