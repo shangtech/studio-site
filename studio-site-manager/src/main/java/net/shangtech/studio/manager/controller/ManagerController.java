@@ -144,8 +144,7 @@ public class ManagerController {
 	private static String getConfigAbsolutePath() {
 		try {
 			URL url = ManagerController.class.getResource("");
-			String path = URLDecoder.decode(url.getPath().replaceFirst("/", ""),
-					"UTF-8");
+			String path = URLDecoder.decode(url.getPath(), "UTF-8");
 			String className = ManagerController.class.getPackage().getName().replace(".", "/");
 			path = path.replace(className, "").replace("//", "/");
 			return path;
